@@ -5,8 +5,9 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native'
 import {
   SafeAreaView,
   StyleSheet,
@@ -26,13 +27,16 @@ import {
 
 const App = () => {
   return (
-   <Text>Hello World</Text>
+    <NavigationContainer>
+       <Text>Hello</Text>
+    </NavigationContainer>
   );
 };
 
 const styles = StyleSheet.create({
- 
- 
+  containner:{
+
+  }
 });
 
 export default App;
