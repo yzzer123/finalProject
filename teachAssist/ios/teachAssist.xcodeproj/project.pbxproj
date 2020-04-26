@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* teachAssistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* teachAssistTests.m */; };
+		00E356F31AD99517003FC87E /* TeachAssistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TeachAssistTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -15,7 +15,23 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* teachAssistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* teachAssistTests.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* TeachAssistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TeachAssistTests.m */; };
+		11A8BCDBD42F40229ED322F0 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37AF68567BC942D0914B7DAE /* AntDesign.ttf */; };
+		9D81719822EA4E32B12EB729 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A56DF2196684E29BA65911C /* Entypo.ttf */; };
+		A7D19823FCC14D4389F8E3E4 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2317A849970C45778C61F2A2 /* EvilIcons.ttf */; };
+		4BAEDA5083C14B539C353EFE /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA63D4C6D9BE47398D35A91D /* Feather.ttf */; };
+		C2C362A7422F4F6CB8EE706A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BF14C6A374747A5BFD8AE32 /* FontAwesome.ttf */; };
+		03A718D60D914AF8950EF2BC /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC859F05F52E444E9F799290 /* FontAwesome5_Brands.ttf */; };
+		A59139EECFFB4477AB753980 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01B4FBC49BD54647BED68869 /* FontAwesome5_Regular.ttf */; };
+		CDE76D77A8A649A2A5A57D78 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C384FD70BB044B3499E76AA3 /* FontAwesome5_Solid.ttf */; };
+		F02FD381125E4DE9A2830FF7 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0701ECC09CE54754B1C8F8F5 /* Fontisto.ttf */; };
+		56CDBAAA2DD047B18AECB4A4 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 043D8DA95E704E60A5077CA8 /* Foundation.ttf */; };
+		3C8C2C226D904B5AA44ED697 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD986C3CBEFF4D889FB7EE6B /* Ionicons.ttf */; };
+		469BFE7E387045238C352BB3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00ED6D4EA35C466EB4A690EE /* MaterialCommunityIcons.ttf */; };
+		8096D6B4A97B48E99438B400 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCD8A026EEFD4A9DBD69D561 /* MaterialIcons.ttf */; };
+		E0BE1747603E48E2859C510F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF9D97023AC409590055CD5 /* Octicons.ttf */; };
+		A8229178D5AD4457B6FF78A2 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05937660AD3640C5B4223502 /* SimpleLineIcons.ttf */; };
+		D1709FFE3EDC463E8218A9F9 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCCAB99E2711424FB2250603 /* Zocial.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,33 +40,49 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = teachAssist;
+			remoteInfo = TeachAssist;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "teachAssist-tvOS";
+			remoteInfo = "TeachAssist-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* teachAssistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = teachAssistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* TeachAssistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeachAssistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* teachAssistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = teachAssistTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* teachAssist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teachAssist.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = teachAssist/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = teachAssist/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* TeachAssistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeachAssistTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* TeachAssist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachAssist.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TeachAssist/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = TeachAssist/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = teachAssist/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = teachAssist/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = teachAssist/main.m; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* teachAssist-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "teachAssist-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* teachAssist-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "teachAssist-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TeachAssist/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TeachAssist/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TeachAssist/main.m; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* TeachAssist-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TeachAssist-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* TeachAssist-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeachAssist-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		37AF68567BC942D0914B7DAE /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0A56DF2196684E29BA65911C /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2317A849970C45778C61F2A2 /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FA63D4C6D9BE47398D35A91D /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5BF14C6A374747A5BFD8AE32 /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FC859F05F52E444E9F799290 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		01B4FBC49BD54647BED68869 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C384FD70BB044B3499E76AA3 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0701ECC09CE54754B1C8F8F5 /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		043D8DA95E704E60A5077CA8 /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD986C3CBEFF4D889FB7EE6B /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		00ED6D4EA35C466EB4A690EE /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BCD8A026EEFD4A9DBD69D561 /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9BF9D97023AC409590055CD5 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		05937660AD3640C5B4223502 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BCCAB99E2711424FB2250603 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,13 +117,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* teachAssistTests */ = {
+		00E356EF1AD99517003FC87E /* TeachAssistTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* teachAssistTests.m */,
+				00E356F21AD99517003FC87E /* TeachAssistTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = teachAssistTests;
+			path = TeachAssistTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -102,7 +134,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* teachAssist */ = {
+		13B07FAE1A68108700A75B9A /* TeachAssist */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -113,7 +145,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = teachAssist;
+			name = TeachAssist;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -135,11 +167,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* teachAssist */,
+				13B07FAE1A68108700A75B9A /* TeachAssist */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* teachAssistTests */,
+				00E356EF1AD99517003FC87E /* TeachAssistTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				400C12F4155549C9AA8E1A5A /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,20 +182,44 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* teachAssist.app */,
-				00E356EE1AD99517003FC87E /* teachAssistTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* teachAssist-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* teachAssist-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* TeachAssist.app */,
+				00E356EE1AD99517003FC87E /* TeachAssistTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* TeachAssist-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* TeachAssist-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+		400C12F4155549C9AA8E1A5A /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				37AF68567BC942D0914B7DAE /* AntDesign.ttf */,
+				0A56DF2196684E29BA65911C /* Entypo.ttf */,
+				2317A849970C45778C61F2A2 /* EvilIcons.ttf */,
+				FA63D4C6D9BE47398D35A91D /* Feather.ttf */,
+				5BF14C6A374747A5BFD8AE32 /* FontAwesome.ttf */,
+				FC859F05F52E444E9F799290 /* FontAwesome5_Brands.ttf */,
+				01B4FBC49BD54647BED68869 /* FontAwesome5_Regular.ttf */,
+				C384FD70BB044B3499E76AA3 /* FontAwesome5_Solid.ttf */,
+				0701ECC09CE54754B1C8F8F5 /* Fontisto.ttf */,
+				043D8DA95E704E60A5077CA8 /* Foundation.ttf */,
+				AD986C3CBEFF4D889FB7EE6B /* Ionicons.ttf */,
+				00ED6D4EA35C466EB4A690EE /* MaterialCommunityIcons.ttf */,
+				BCD8A026EEFD4A9DBD69D561 /* MaterialIcons.ttf */,
+				9BF9D97023AC409590055CD5 /* Octicons.ttf */,
+				05937660AD3640C5B4223502 /* SimpleLineIcons.ttf */,
+				BCCAB99E2711424FB2250603 /* Zocial.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* teachAssistTests */ = {
+		00E356ED1AD99517003FC87E /* TeachAssistTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "teachAssistTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "TeachAssistTests" */;
 			buildPhases = (
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
@@ -173,14 +230,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = teachAssistTests;
-			productName = teachAssistTests;
-			productReference = 00E356EE1AD99517003FC87E /* teachAssistTests.xctest */;
+			name = TeachAssistTests;
+			productName = TeachAssistTests;
+			productReference = 00E356EE1AD99517003FC87E /* TeachAssistTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* teachAssist */ = {
+		13B07F861A680F5B00A75B9A /* TeachAssist */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "teachAssist" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "TeachAssist" */;
 			buildPhases = (
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -192,14 +249,14 @@
 			);
 			dependencies = (
 			);
-			name = teachAssist;
-			productName = teachAssist;
-			productReference = 13B07F961A680F5B00A75B9A /* teachAssist.app */;
+			name = TeachAssist;
+			productName = "TeachAssist";
+			productReference = 13B07F961A680F5B00A75B9A /* TeachAssist.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* teachAssist-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* TeachAssist-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "teachAssist-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TeachAssist-tvOS" */;
 			buildPhases = (
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
@@ -211,14 +268,14 @@
 			);
 			dependencies = (
 			);
-			name = "teachAssist-tvOS";
-			productName = "teachAssist-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* teachAssist-tvOS.app */;
+			name = "TeachAssist-tvOS";
+			productName = "TeachAssist-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* TeachAssist-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* teachAssist-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* TeachAssist-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "teachAssist-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TeachAssist-tvOSTests" */;
 			buildPhases = (
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
@@ -229,9 +286,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "teachAssist-tvOSTests";
-			productName = "teachAssist-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* teachAssist-tvOSTests.xctest */;
+			name = "TeachAssist-tvOSTests";
+			productName = "TeachAssist-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* TeachAssist-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -240,14 +297,12 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 940;
+				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
-					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -260,9 +315,9 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "teachAssist" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "TeachAssist" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -273,10 +328,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* teachAssist */,
-				00E356ED1AD99517003FC87E /* teachAssistTests */,
-				2D02E47A1E0B4A5D006451C7 /* teachAssist-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* teachAssist-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* TeachAssist */,
+				00E356ED1AD99517003FC87E /* TeachAssistTests */,
+				2D02E47A1E0B4A5D006451C7 /* TeachAssist-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* TeachAssist-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -295,6 +350,22 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				11A8BCDBD42F40229ED322F0 /* AntDesign.ttf in Resources */,
+				9D81719822EA4E32B12EB729 /* Entypo.ttf in Resources */,
+				A7D19823FCC14D4389F8E3E4 /* EvilIcons.ttf in Resources */,
+				4BAEDA5083C14B539C353EFE /* Feather.ttf in Resources */,
+				C2C362A7422F4F6CB8EE706A /* FontAwesome.ttf in Resources */,
+				03A718D60D914AF8950EF2BC /* FontAwesome5_Brands.ttf in Resources */,
+				A59139EECFFB4477AB753980 /* FontAwesome5_Regular.ttf in Resources */,
+				CDE76D77A8A649A2A5A57D78 /* FontAwesome5_Solid.ttf in Resources */,
+				F02FD381125E4DE9A2830FF7 /* Fontisto.ttf in Resources */,
+				56CDBAAA2DD047B18AECB4A4 /* Foundation.ttf in Resources */,
+				3C8C2C226D904B5AA44ED697 /* Ionicons.ttf in Resources */,
+				469BFE7E387045238C352BB3 /* MaterialCommunityIcons.ttf in Resources */,
+				8096D6B4A97B48E99438B400 /* MaterialIcons.ttf in Resources */,
+				E0BE1747603E48E2859C510F /* Octicons.ttf in Resources */,
+				A8229178D5AD4457B6FF78A2 /* SimpleLineIcons.ttf in Resources */,
+				D1709FFE3EDC463E8218A9F9 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* teachAssistTests.m in Sources */,
+				00E356F31AD99517003FC87E /* TeachAssistTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* teachAssistTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* TeachAssistTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,12 +495,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* teachAssist */;
+			target = 13B07F861A680F5B00A75B9A /* TeachAssist */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* teachAssist-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* TeachAssist-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -441,7 +512,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = teachAssist;
+			path = TeachAssist;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -455,7 +526,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = teachAssistTests/Info.plist;
+				INFOPLIST_FILE = TeachAssistTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -465,7 +536,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/teachAssist.app/teachAssist";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeachAssist.app/TeachAssist";
 			};
 			name = Debug;
 		};
@@ -474,7 +545,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = teachAssistTests/Info.plist;
+				INFOPLIST_FILE = TeachAssistTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -484,7 +555,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/teachAssist.app/teachAssist";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeachAssist.app/TeachAssist";
 			};
 			name = Release;
 		};
@@ -492,14 +563,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_BITCODE = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"FB_SONARKIT_ENABLED=1",
-				);
-				INFOPLIST_FILE = teachAssist/Info.plist;
+				DEAD_CODE_STRIPPING = NO;
+				INFOPLIST_FILE = TeachAssist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -507,9 +573,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = teachAssist;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				PRODUCT_NAME = TeachAssist;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -518,9 +582,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = teachAssist/Info.plist;
+				INFOPLIST_FILE = TeachAssist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -528,8 +591,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = teachAssist;
-				SWIFT_VERSION = 5.0;
+				PRODUCT_NAME = TeachAssist;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -546,14 +608,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "teachAssist-tvOS/Info.plist";
+				INFOPLIST_FILE = "TeachAssist-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.teachAssist-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.TeachAssist-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -573,14 +635,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "teachAssist-tvOS/Info.plist";
+				INFOPLIST_FILE = "TeachAssist-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.teachAssist-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.TeachAssist-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -599,17 +661,17 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "teachAssist-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "TeachAssist-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.teachAssist-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.TeachAssist-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/teachAssist-tvOS.app/teachAssist-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeachAssist-tvOS.app/TeachAssist-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -625,17 +687,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "teachAssist-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "TeachAssist-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.teachAssist-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.TeachAssist-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/teachAssist-tvOS.app/teachAssist-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeachAssist-tvOS.app/TeachAssist-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -644,7 +706,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -688,12 +749,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
-				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -704,7 +759,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -741,12 +795,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
-				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -756,7 +804,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "teachAssistTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "TeachAssistTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -765,7 +813,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "teachAssist" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "TeachAssist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -774,7 +822,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "teachAssist-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TeachAssist-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -783,7 +831,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "teachAssist-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TeachAssist-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -792,7 +840,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "teachAssist" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "TeachAssist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
