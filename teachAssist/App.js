@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, Button,
   TextInput,
-
+  
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -62,7 +62,7 @@ const App = () =>{
         },
       })}
       tabBarOptions={{
-        activeTintColor: '#00FFFF',
+        activeTintColor: '#2894FF',
         inactiveTintColor: 'gray',
       }}
     >
