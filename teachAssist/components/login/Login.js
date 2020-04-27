@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {} 
 import {
   AppRegistry,
   Text,
@@ -72,5 +73,3 @@ export default class Login extends Component{
         )
     }
 }
-
-AppRegistry.registerComponent('Login', () => Login);
