@@ -1,78 +1,56 @@
-import * as React from 'react';
-import { View, Text, Button,
-  TextInput,
-  
+import  React from 'react';
+import { 
+  View
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Icon} from 'react-native-vector-icons/AntDesign';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import  FontIcon  from 'react-native-vector-icons/FontAwesome';
+import  FounIcon  from 'react-native-vector-icons/Foundation';
+
+import IssueScreen from './pages/issue/issuepage';
+import TutorialScreen from './pages/tutorial/tutorialpage';
+import UserScreen from './pages/user/userpage';
+
+// Bottom Tabs
 const Tab = createBottomTabNavigator();
 
-const HomeScreen=({navigation, route})=>{
-  
 
-  return (
-    <View  style={{flex:1, justifyContent:'center', alignItems: 'center'}}>
-
-    <Text>Home</Text>
-    </View>
-  );
-}
-const Command=({navigation, route})=>{
-  
-
-  return (
-    <View  style={{flex:1, justifyContent:'center', alignItems: 'center'}}>
-
-    <Text>Command</Text>
-    </View>
-  );
-}
-const UserSetting =({navigation, route})=>{
-  
-
-  return (
-    <View  style={{flex:1, justifyContent:'center', alignItems: 'center'}}>
-
-    <Text>UserSetting</Text>
-    </View>
-  );
-}
 const App = () =>{
-
-
   return (
     <NavigationContainer>
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Command') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
+          // different icons for each tab
+          if (focused){
+            size = 30
           }
-
-          // You can return any component that you like here!
-          return <Ionicons size={40} name={iconName} size={size} color={color} />;
+          if (route.name === 'Tutorial') {
+                  
+              return <FontIcon name={"book"} size={size} color={color}/>
+            } else if (route.name === 'Issue') {
+              return <FounIcon name={"comments"} size={size} color={color}/>
+            } else if (route.name === 'User'){
+              return <FontIcon name={"user"} size={size} color={color}/>        
+          }
         },
       })}
       tabBarOptions={{
         activeTintColor: '#2894FF',
-        inactiveTintColor: 'gray',
+        inactiveTintColor: '#C0C0C0',
       }}
+      animationEnabled={true}
+      swipeEnabled={true}
     >
-      <Tab.Screen name="Home" component={HomeScreen}  />
-      <Tab.Screen name="Command" component={Command} />
-      <Tab.Screen name="UserSetting" component={UserSetting} />
+       {/* the three main screens in home screen */}
+      <Tab.Screen name="Tutorial" component={TutorialScreen}  />
+      <Tab.Screen name="Issue" component={IssueScreen} />
+      <Tab.Screen name="User" component={UserScreen} />
     </Tab.Navigator>
   </NavigationContainer>
   );
 
 }
+
 
 export default App;
