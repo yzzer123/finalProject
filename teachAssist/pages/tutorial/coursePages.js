@@ -1,39 +1,41 @@
-import React from 'react';
+import React,{useState} from 'react';
 import{
     View
 }from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 import ArticleList from '../../components/articleList/articleList';
 
-const MtPage = ()=>{
+
+const MtPage = ({navigation,route})=>{
 
     return (
         <View>
-            <ArticleList />
+            <ArticleList setHide={route.params.setHide} />
+            
         </View>
     )
 }
-const PythonPage = ()=>{
+const PythonPage = ({navigation,route})=>{
 
     return (
         <View>
-            <ArticleList />
+            <ArticleList setHide={route.params.setHide} />
         </View>
     )
 }
-const AIPage = ()=>{
+const AIPage = ({navigation,route})=>{
 
     return (
         <View>
-            <ArticleList />
+            <ArticleList setHide={route.params.setHide} />
         </View>
     )
 }
-const DVPage = ()=>{
+const DVPage = ({navigation,route})=>{
 
     return (
         <View>
-            <ArticleList />
+            <ArticleList setHide={route.params.setHide} />
         </View>
     )
 }

@@ -3,7 +3,7 @@ import  React from 'react';
 import {
     View,
     Text,
-   
+   StatusBar
 }from 'react-native';
 import styles from './styles';
 
@@ -17,10 +17,21 @@ const TopTab = createMaterialTopTabNavigator();
 
 
 // the main screen of Tutorial
-const TutorialScreen = ()=>{
+const TutorialScreen = ({navigation, route})=>{
+
+    const setHide = (bool)=>{
+        navigation.setOptions({tabBarVisible: bool})
+    }
+
 
     return (
-       
+       <>
+       <StatusBar 
+        backgroundColor={'white'} 
+        animated={true} 
+        hidden={false}
+          barStyle="dark-content"  
+          />
         <TopTab.Navigator  
         tabBarOptions={{
             labelStyle: { fontSize: 10 },
@@ -29,18 +40,24 @@ const TutorialScreen = ()=>{
             showLabel: false,
           }}
           tabBar={props=><MyTabBar {...props}/>}
+          
         >
+            
             {/*four pages of the our courses */}
             <TopTab.Screen name="MobileTech" component={MtPage}  
+            initialParams={{setHide:setHide}}
             />
             <TopTab.Screen name="Python" component={PythonPage}  
+            initialParams={{setHide:setHide}}
             />
             <TopTab.Screen name="MachineLearn" component={AIPage} 
+            initialParams={{setHide:setHide}}
              />
-            <TopTab.Screen name="DataVisual" component={DVPage}     
+            <TopTab.Screen name="DataVisual" component={DVPage}   
+            initialParams={{setHide:setHide}}  
             />
         </TopTab.Navigator>
-       
+       </>
     )
 
 }

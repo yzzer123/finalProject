@@ -20,12 +20,7 @@ const App = () =>{
   return (
   
     <NavigationContainer>
-      <StatusBar 
-      backgroundColor={'white'} 
-      animated={true} 
-      hidden={false}
-      barStyle="dark-content"  
-      />
+      
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {

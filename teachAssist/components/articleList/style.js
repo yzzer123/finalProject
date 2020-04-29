@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width ;
+const SCREEN_HEIGHT = Dimensions.get('window').height ;
 const styles = StyleSheet.create({
     articleContainer:{
         height: 260,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         borderTopColor: '#f6f5ec',
         width:SCREEN_WIDTH-30,
         flexDirection:'row',
-        alignContent:'center',
+        alignContent:'center'
     },
     detailText:{
         fontSize:12,
@@ -72,9 +73,40 @@ const styles = StyleSheet.create({
     },
     touch:{
         flex:9,
+    },
+    findnoneIamge:{
+        marginTop: 150,
+        height: 190,
+        resizeMode:'stretch',
+        width: 250
+    },
+    findnoneBox:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+        alignContent:'center'
+    },
+    findnoneText:{
+        fontSize: 18,
+        textAlign:'center',
+        textAlignVertical:'center',
+        marginTop: 20,
+        color: 'skyblue'
+    },
+    footer:{
+        textAlign:'center',
+        textAlignVertical:'center',
+        fontSize:12,
+        lineHeight: 20
+    },
+    floatButton:{
+       borderRadius: 12,
+       borderWidth:0,
+       display:"none"
     }
 
 
 });
 
 export default styles;
+export {SCREEN_WIDTH,SCREEN_HEIGHT};
