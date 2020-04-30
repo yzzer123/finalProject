@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     subHeader:{
         marginLeft: 10,
-        flex:2,
+        flex:1,
         color: 'gray',
         fontSize: 15,
         textAlignVertical:'top',

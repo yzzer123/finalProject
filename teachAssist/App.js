@@ -22,6 +22,7 @@ const App = () =>{
     <NavigationContainer>
       
     <Tab.Navigator
+      
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           // different icons for each tab

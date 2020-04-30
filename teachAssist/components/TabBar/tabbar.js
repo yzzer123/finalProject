@@ -9,7 +9,7 @@ import FofIcon from 'react-native-vector-icons/FontAwesome5';
 import MtIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from './styles';
 import Animated from 'react-native-reanimated';
-function MyTabBar({ state, descriptors, navigation, position }) {
+function MyTabBar({ state, descriptors, navigation, stackNavigation,position,getBarState }) {
     return (
         <View style={styles.TopBarContainer}>
   
@@ -110,7 +110,10 @@ function MyTabBar({ state, descriptors, navigation, position }) {
         size={20}
          color= {themeColor}
          style={styles.search}
-         onPress={()=>{console.log("hello")}}
+         onPress={()=>{
+           stackNavigation.navigate('SearchScreen',{getBarState:getBarState});
+           
+         }}
       
          />
       </View>

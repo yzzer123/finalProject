@@ -113,6 +113,8 @@ class ArticleList extends Component{
         this.offsetY = 0;
         this.barHideState=true;
         this.setHide = props.setHide; // to hide the bottom bar
+        this.stackNavigation = props.stackNavigation;
+        this.stackRoute = props.stackRoute;
         
     }
     judgeIsDisplay=(event)=>{ // react to the scroll steate
@@ -171,7 +173,7 @@ class ArticleList extends Component{
             buttonColor="rgba(0,0,0,0)"
             onPress={this.scrollToTop}
             offsetX={5}
-            offsetY={SCREEN_HEIGHT-120}
+            offsetY={SCREEN_HEIGHT*2/3}
             verticalOrientation="down"
             renderIcon={()=><FLoatButton />}
             hideShadow={true}
