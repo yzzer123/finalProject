@@ -24,45 +24,48 @@ const UserScreen = ()=>{
                     barStyle=''
                 />
                 <UserHeader/>
-{/*                 <View>
-                    <UserCommon />
-                </View> */}
                  <View>
                     <UserCommonItem
-                        leftIcon={require('./image/favourite.png')}
+                        leftIconName='favorite-border'
+                        judge={false}
+                        IconColor='#f05b72'
                         leftTitle='Favourite'
                     />
                     <UserCommonItem
-                        leftIcon={require('./image/post.png')}
-                        leftTitle='Post'
+                        leftIconName='tag-multiple'
+                        judge={true}
+                        IconColor='#ffc20e'
+                        leftTitle='Tag'
                     />
                     <UserCommonItem
-                        leftIcon={require('./image/attention.png')}
-                        leftTitle='Attention'
+                        leftIconName='timetable'
+                        judge={true}
+                        IconColor='#b76f40'
+                        leftTitle='Reading time'
+                    />
+                    <UserCommonItem
+                        leftIconName='history'
+                        judge={false}
+                        IconColor='#596032'
+                        leftTitle='History'
                     />
                 </View>
-                <View>
+                <View style={{marginTop:10}}>
                     <UserCommonItem
-                        leftIcon={require('./image/github.png')}
-                        leftTitle='Friends'
-                    />
-                    <UserCommonItem
-                        leftIcon={require('./image/footprint.png')}
-                        leftTitle='Footprint'
-                    />
-                    <UserCommonItem
-                        leftIcon={require('./image/email.png')}
-                        leftTitle='Email'
-
-                    />
-
-                </View>
-                <View >
-                    <UserCommonItem
-                        leftIcon={require('./image/setting.png')}
+                        leftIconName='settings'
+                        judge={true}
+                        IconColor='#33a3dc'
                         leftTitle='Setting'
                     />
-                </View> 
+                    <UserCommonItem
+                        leftIconName='people-outline'
+                        judge={false}
+                        IconColor='#50b7c1'
+                        leftTitle='About us'
+
+                    />
+
+                </View>
             </ScrollView>
     )
 

@@ -51,14 +51,14 @@ export default class UserHeader extends Component{
         var data=[
                     {'number':'33','title':'articles'},
                     {'number':'133','title':'commments'},
-                    {'number':'133','title':'collect'}
+                    {'number':'133','title':'collects'}
                 ]
                 for(var i =0;i<data.length;i++){
                     var item = data[i];
                     Array.push(
                         <View key={i} style={styles.bottomInnerStyle}>
-                            <Text style={{color:'white'}}>{item.number}</Text>
-                            <Text style={{color:'white'}}>{item.title}</Text>
+                            <Text style={{color:'black'}}>{item.number}</Text>
+                            <Text style={{color:'black'}}>{item.title}</Text>
                         </View>
                     )
                 }
