@@ -13,7 +13,8 @@ export default class UserHeader extends Component{
     constructor(Props){
         super(Props)
         this.state={
-            name:'Dzper'
+            name:'Dzper',
+            numbers:['133','33','133']
         }
     }
     render(){
@@ -48,10 +49,11 @@ export default class UserHeader extends Component{
     }
     BottomItem(){
         var Array=[]
+        var num=this.state.numbers
         var data=[
-                    {'number':'33','title':'articles'},
-                    {'number':'133','title':'commments'},
-                    {'number':'133','title':'collects'}
+                    {'number':num[0],'title':'articles'},
+                    {'number':num[1],'title':'commments'},
+                    {'number':num[2],'title':'collects'}
                 ]
                 for(var i =0;i<data.length;i++){
                     var item = data[i];
