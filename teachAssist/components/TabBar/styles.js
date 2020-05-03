@@ -1,8 +1,7 @@
 
 
 import {
-    StyleSheet,
-    Dimensions
+    StyleSheet
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     BarIconContainer:{ // the container of four tabs
-        width: Dimensions.get('window').width*3/4,
+        width: global.gScreen.WIDTH*3/4,
         flexDirection:'row',
 
     },

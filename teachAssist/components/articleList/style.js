@@ -1,10 +1,9 @@
 import {
-    StyleSheet,
-    Dimensions
+    StyleSheet
 } from 'react-native';
 
-const SCREEN_WIDTH = Dimensions.get('window').width ;
-const SCREEN_HEIGHT = Dimensions.get('window').height ;
+const SCREEN_WIDTH = global.gScreen.WIDTH;
+const SCREEN_HEIGHT = global.gScreen.HEIGHT;
 const styles = StyleSheet.create({
     articleContainer:{
         height: 260,
@@ -103,6 +102,28 @@ const styles = StyleSheet.create({
        borderRadius: 12,
        borderWidth:0,
        display:"none"
+    },
+    searchHeader:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        width:SCREEN_WIDTH -80,
+        alignItems:'center',
+        height: 50,
+        backgroundColor:'white',
+        marginLeft:40,
+        marginRight: 40,
+        borderRadius: 10,
+        marginTop:5,
+
+    },
+    clearButton:{
+        marginRight: 20,
+        
+
+    },
+    searchKeyWord:{
+        fontSize: 15,
+        marginLeft: 20,
     }
 
 

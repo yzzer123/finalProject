@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
 import{
     FlatList,
-    View,
-    Text,
-    Image,
     Platform,
-    TouchableOpacity,
     LayoutAnimation,
     UIManager
 }from 'react-native';
 import styles,{SCREEN_HEIGHT,SCREEN_WIDTH} from './style';
+import  {FLoatButton,Footer,Find404,ArticleItem,SearchBar} from './article_components';
 import ActionButton from 'react-native-action-button';
-import{useFocusEffect} from '@react-navigation/native';
 const testData = {
     pubTime: "1999/10/11",
     viewTimes: 23,
@@ -29,93 +25,88 @@ for(let i=0;i<5;i++){
     datalist.push(testData);
 }
 
-import {Icon} from 'react-native-elements';
-
-const DetailItem = ({style,name,color="#999d9c",type="material", text})=>{
-    return (
-        <View style={style}>
-            <Icon name={name} raised  color={color}  type={type} size={14} containerStyle={{padding:0}}  />
-            <Text style={styles.detailText}> {text} </Text>
-        </View>
-        
-    )
-}
-
-const ArticleItem = ({item, index=1})=>{
-
-    return (
-       
-           <View style={styles.articleContainer}>
-            <TouchableOpacity
-            style={styles.touch}
-            onPress={()=>{console.log("passage")}}
-            >
-            <Image style={styles.articleImage}  source={{uri:item.backgroundImageUri}}/> 
-                {/*background Image */}
-                <Text style={styles.header} >{item.title}</Text>  
-                {/*the title of article */}
-                <Text style={styles.subHeader} >{item.subTitle}</Text> 
-                {/*the subtitle of article */}
-            </TouchableOpacity>
-            <View style={styles.detailContainer}> 
-            
-            {/* detail informaiton*/}
-            <DetailItem name="watch-later" color="#fab27b" style={styles.time} text={item.pubTime} />
-            <DetailItem name="visibility" color="#8a8c8e" style={styles.view} text={item.viewTimes} />
-            <DetailItem name="textsms" color="#33a3dc" style={styles.commend} text={item.commends} />
-            <DetailItem name="favorite"color="#d71345"  style={styles.likes} text={item.likes} />
-            </View> 
-            </View>
-       
-    )
-
-}
-// if list has nothing will return 
-const Find404 = ()=>{
-
-    return (
-        <View style={styles.findnoneBox}>
-            <Image source={require("./img/404.png")} style={styles.findnoneIamge} />
-            <Text style={styles.findnoneText}>(ŎдŎ；)Oh, here is nothing!</Text>
-        </View>
-
-    );
-}
-// the footer of list
-const Footer = ()=>{
-    return (
-        <Text style={styles.footer}>{"o(▼皿▼メ;)oI have a end line!!!"}</Text>
-    )
-}
-const FLoatButton = ()=>{
-    
-    
-    return (
-        <Icon name="arrow-upward"   size={24} reverse raised color="skyblue"/>
-
-    )
-}
-// 
-
 class ArticleList extends Component{
 
     constructor(props){
         super(props)
         this.state={
-            articleList:[],
             displayButton:false,
-            refreshing:false,
-            
+            refreshing:true,
+            showSearchBar:false,
+            updated: false,
         }
         if(Platform.OS === 'android'){
             UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
           }
+        this.articleList = [];
+        this.virsualList=[];
         this.offsetY = 0;
         this.barHideState=true;
         this.setHide = props.setHide; // to hide the bottom bar
         this.stackNavigation = props.stackNavigation;
         this.stackRoute = props.stackRoute;
         
+    }
+    componentDidMount(){
+        this.articleList = datalist;
+        this.virsualList=[...this.articleList];
+        this.setState({refreshing:false});
+        // setInterval(()=>{
+        //     console.log(this.state.search);
+        // },5000)
+        
+    }
+    shouldComponentUpdate(nextProps,nextState){
+        if(this.props.keyWord !== nextProps.keyWord){
+            if(nextState.updated === true){
+                
+                if(nextProps.keyWord !== ""){
+                    LayoutAnimation.easeInEaseOut()
+                    this.state.showSearchBar = true;
+                    let key = nextProps.keyWord.toLowerCase();
+                    this.virsualList = this.articleList.filter((item)=>{
+                        return (item.title.toLowerCase().indexOf(key)!==-1 || item.subTitle.toLowerCase().indexOf(key)!==-1 );
+                    });
+                    this._FlatList.scrollToOffset({offset:1, animated:false});
+                }else{
+                    this.virsualList = this.articleList;
+                }
+            }else{
+                
+                if(nextProps.keyWord === "" && this.virsualList.length !== this.articleList.length){
+                    this.virsualList = this.articleList;
+                }else if(nextProps.keyWord !== "" ){
+                    LayoutAnimation.easeInEaseOut()
+                    this.state.showSearchBar = true;
+                    console.log(nextProps.keyWord)
+                    let key = nextProps.keyWord.toLowerCase();
+                    this.virsualList = this.articleList.filter((item)=>{
+                        return (item.title.toLowerCase().indexOf(key)!==-1 || item.subTitle.toLowerCase().indexOf(key)!==-1 );
+                    });
+                    
+                }
+            }
+            return true;
+        }
+        if(nextState.updated){
+            return true;
+        }
+        if(this.state.displayButton !== nextState.displayButton){
+            return true;
+        }
+        if (this.state.refreshing !== nextState.refreshing){
+            return true;
+        }
+        if (this.state.showSearchBar !== nextState.showSearchBar){
+            return true;
+        }
+       
+        return false;
+    }
+    componentDidUpdate(){
+        
+        this.state.updated = false;
+       
     }
     judgeIsDisplay=(event)=>{ // react to the scroll steate
         let nowOffsetY = event.nativeEvent.contentOffset.y;
@@ -153,21 +144,32 @@ class ArticleList extends Component{
     dataQequest(){
 
     }
+    resetKeyWord = ()=>{
+        
+        LayoutAnimation.easeInEaseOut()
+        
+        global.search.searchTabPage = this.props.type;
+        global.search.keyWord = "";
+        this.props.resetkeyWord();
+        this.setState({showSearchBar:false});
+
+    }
     render(){
         return (
             <>
            <FlatList
+           ListHeaderComponent={()=>(this.state.showSearchBar ? <SearchBar  keyWord={this.props.keyWord}   action={this.resetKeyWord} /> :(<></>))}
            refreshing={this.state.refreshing}
            onRefresh={this.reFresh}
            ref={(flatlist)=>{this._FlatList = flatlist}}
-           data={datalist}
+           data={this.virsualList}
            onScroll={(event)=>{this.judgeIsDisplay(event)}}
            removeClippedSubviews={true}
            //if list is empty
            ListEmptyComponent={<Find404 />}
-           renderItem={({item,index})=>(<ArticleItem index={index} item={testData}/>)}
+           renderItem={({item,index})=>(<ArticleItem type={this.props.type}  index={index} item={item}/>)}
            keyExtractor={(item,index)=>`${index}`}
-           ListFooterComponent={<Footer/>}
+           ListFooterComponent={()=>(this.virsualList.length !== 0 ?<Footer/>: <></>)}
            />
             {this.state.displayButton ? (<ActionButton
             buttonColor="rgba(0,0,0,0)"

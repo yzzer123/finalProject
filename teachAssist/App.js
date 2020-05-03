@@ -1,4 +1,5 @@
 import  React from 'react';
+import './global';
 import { 
   View,
   StatusBar
@@ -11,7 +12,6 @@ import  FounIcon  from 'react-native-vector-icons/Foundation';
 import IssueScreen from './pages/issue/issuepage';
 import TutorialScreen from './pages/tutorial/tutorialpage';
 import UserScreen from './pages/user/userpage';
-import {themeColor} from './colorsetting';
 // Bottom Tabs
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +40,7 @@ const App = () =>{
         },
       })}
       tabBarOptions={{
-        activeTintColor: themeColor,
+        activeTintColor: global.gColor.themeColor,
         inactiveTintColor: '#C0C0C0',
       }}
       animationEnabled={true}

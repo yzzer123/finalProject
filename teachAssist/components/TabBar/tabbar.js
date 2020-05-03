@@ -4,7 +4,6 @@ import {
     TouchableOpacity,
     Text
 } from 'react-native'
-import {themeColor,unActiveColor} from '../../colorsetting';
 import FofIcon from 'react-native-vector-icons/FontAwesome5';
 import MtIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from './styles';
@@ -51,9 +50,9 @@ function MyTabBar({ state, descriptors, navigation, stackNavigation,position,get
             outputRange: inputRange.map(i => (i === index ? 1 : 0.4)),
           });
           
-          let nowColor = themeColor;
+          let nowColor = global.gColor.themeColor;
           if (isFocused){
-              nowColor = themeColor;
+              nowColor = global.gColor.themeColor;
           }
   
           let TabIcon = "";
@@ -108,9 +107,10 @@ function MyTabBar({ state, descriptors, navigation, stackNavigation,position,get
       <FofIcon 
        name="search" 
         size={20}
-         color= {themeColor}
+         color= {global.gColor.themeColor}
          style={styles.search}
          onPress={()=>{
+           global.search.searchTabPage = global.nowTab;
            stackNavigation.navigate('SearchScreen',{getBarState:getBarState});
            
          }}

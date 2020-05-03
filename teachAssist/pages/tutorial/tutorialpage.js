@@ -6,21 +6,24 @@ import {
    StatusBar
 }from 'react-native';
 import styles from './styles';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import MyTabBar from '../../components/TabBar/tabbar';
 import {MtPage,DVPage,PythonPage,AIPage} from'./coursePages';
 import SearchPage from '../search/search';
-import {Icon} from 'react-native-elements';
+import ArticlePage from '../article/article';
+// import {Icon} from 'react-native-elements';
 // create TopTabNavigation
 const TopTab = createMaterialTopTabNavigator();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); // stack
 
 // the main screen of Tutorial
-
+// tab
 const TabScreen = ({navigation,route})=>{
     const {setHide,getbarState} = route.params;
     // TODO get search words from route
+  
+    
     return (
         <TopTab.Navigator  
                     tabBarOptions={{
@@ -60,6 +63,9 @@ const TabScreen = ({navigation,route})=>{
     );
 }
 
+
+
+// stack
 const TutorialScreen = ({navigation, route})=>{
 
     
@@ -81,8 +87,22 @@ const TutorialScreen = ({navigation, route})=>{
         hidden={false}
           barStyle="dark-content"  
           />
-        <Stack.Navigator>
-        
+        <Stack.Navigator
+        // initialRouteName="TabScreen"
+        >
+             <Stack.Screen 
+                name="ArticleScreen"
+                component={ArticlePage}
+                options={{
+                //    headerShown:false,
+                   cardStyleInterpolator:CardStyleInterpolators.forVerticalIOS,
+                }}
+                initialParams={{
+                    setHide:setrealHide,
+                    getbarState:barState,
+                }}
+            />
+            
             <Stack.Screen
                 name="TabScreen"
                 component={TabScreen}
@@ -99,6 +119,7 @@ const TutorialScreen = ({navigation, route})=>{
                 component={SearchPage}
                 options={{
                    headerShown:false,
+                //    cardStyleInterpolator:CardStyleInterpolators.forVerticalIOS
                 }}
                 initialParams={{
 

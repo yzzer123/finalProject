@@ -1,9 +1,9 @@
+import React from 'react';
 import {
      StyleSheet,
-     Dimensions,
 } from 'react-native';
-const WIDTH = Dimensions.get('window').width
-const HEIGHT = Dimensions.get('window').height
+const WIDTH = global.gScreen.WIDTH
+const HEIGHT = global.gScreen.HEIGHT
 const styles = StyleSheet.create({
     headerContainer:{
         flexDirection:'row',

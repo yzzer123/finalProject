@@ -1,6 +1,7 @@
 import React,{PureComponent} from 'react'
 import {
     View,
+    ScrollView,
     Text
 } from 'react-native';
 import styles from './style';
@@ -53,11 +54,20 @@ class SearchPage extends PureComponent{
             this.setState({history:[]})
         }
       }
+    setText = (text)=>{
+        this.setState({text:text});
+        
+        global.search.keyWord = text;
+        setTimeout(()=>{
+            this.props.navigation.goBack();
+        },100)
+       
+    }
     componentDidMount(){
 
         setTimeout(()=>{
             this._search.focus();
-        },100)
+        },200)
         this.getHistory()
         this.setHide(false);
     }
@@ -88,7 +98,7 @@ class SearchPage extends PureComponent{
     }
     render(){
         return (
-            <View  style={{backgroundColor:'white',flex:1}} >
+            <ScrollView  keyboardShouldPersistTaps='handled'  style={{backgroundColor:'white',flex:1}} >
 
             <SearchBar
             platform="android"
@@ -97,22 +107,26 @@ class SearchPage extends PureComponent{
             containerStyle={{backgroundColor:'white',borderWidth:0}}
             inputContainerStyle={{backgroundColor:'white',borderWidth:0}}
             keyboardType="web-search"
+            returnKeyType='search'
+            value={this.state.text}
             inputStyle={{color:'black'}}
             onSubmitEditing={(event)=>{
                 this.setState({submitted:true});
-                this.props.navigation.navigate('TabScreen');
+                global.search.keyWord = event.nativeEvent.text;
+                this.props.navigation.goBack();
             } }
             placeholder="search for articles"
             onChangeText={this.onChange}
             value={this.state.text}
-            onCancel={()=>{this.props.navigation.navigate('TabScreen')}}
+            onCancel={()=>{ this.props.navigation.goBack();}}
             // cancelIcon={(<Text style={{right:0,position:'absolute'}}  >Cancel</Text>)}
             round={true}
             />
             <HistoryList    
             data={this.state.history}
+            setText={this.setText}
             />
-            </View>
+            </ScrollView>
         )
     }
 

@@ -6,17 +6,32 @@ import { Icon } from 'react-native-elements';
 import ArticleList from '../../components/articleList/articleList';
 
 const MtPage = ({navigation,route})=>{
-    // React.useEffect(() => {  // when focus
-    //     const unsubscribe = navigation.addListener('focus', () => {
-    //       console.log("MT");
-    //     });
-    
-    //     return unsubscribe;
-    //   });
+    let [keyWord,setkeyWord] = useState("");
+    useEffect(() => {  // when focus
+        const unsubscribe = navigation.addListener('focus', () => {
+        //   console.log(global.nowTab)
+        //   console.log("MT");
+          global.nowTab = "MT";
+          if(global.search.searchTabPage === "MT" && global.search.keyWord !== keyWord){
+          
+              setkeyWord(global.search.keyWord);
+          }
+         
+        });
+   
+        return unsubscribe;
+      });
+      const resetkeyWord = ()=>{
+        setkeyWord("");
+    }
     // TODO get search words from route
     return (
         <View>
-            <ArticleList setHide={route.params.setHide}  
+            <ArticleList
+            type="MT"
+            resetkeyWord={resetkeyWord}
+            keyWord={keyWord}
+            setHide={route.params.setHide}  
             stackNavigation={route.params.stackNavigation}   
             stackRoute={route.params.stackRoute}
             />
@@ -26,10 +41,29 @@ const MtPage = ({navigation,route})=>{
 }
 const PythonPage = ({navigation,route})=>{
    // TODO get search words from route
-     
+   let [keyWord,setkeyWord] = useState("");
+   useEffect(() => {  // when focus
+       const unsubscribe = navigation.addListener('focus', () => {
+       //   console.log(global.nowTab)
+       //   console.log("MT");
+         global.nowTab = "PY";
+         if(global.search.searchTabPage === "PY" && global.search.keyWord !== keyWord){
+             setkeyWord(global.search.keyWord);
+         }
+       });
+   
+       return unsubscribe;
+     });
+     const resetkeyWord = ()=>{
+        setkeyWord("");
+    }
     return (
         <View>
-            <ArticleList setHide={route.params.setHide}
+            <ArticleList 
+            type="PY"
+            resetkeyWord={resetkeyWord}
+            keyWord={keyWord}
+            setHide={route.params.setHide}
             stackNavigation={route.params.stackNavigation}   
             stackRoute={route.params.stackRoute} />
         </View>
@@ -37,9 +71,29 @@ const PythonPage = ({navigation,route})=>{
 }
 const AIPage = ({navigation,route})=>{
 // TODO get search words from route
+let [keyWord,setkeyWord] = useState("");
+useEffect(() => {  // when focus
+    const unsubscribe = navigation.addListener('focus', () => {
+    //   console.log(global.nowTab)
+    //   console.log("MT");
+      global.nowTab = "AI";
+      if(global.search.searchTabPage === "AI" && global.search.keyWord !== keyWord){
+          setkeyWord(global.search.keyWord);
+      }
+    });
+
+    return unsubscribe;
+  });
+  const resetkeyWord = ()=>{
+    setkeyWord("");
+}
     return (
         <View>
-            <ArticleList setHide={route.params.setHide} 
+            <ArticleList
+            type="AI"
+            keyWord={keyWord}
+            resetkeyWord={resetkeyWord}
+            setHide={route.params.setHide} 
             stackNavigation={route.params.stackNavigation}   
             stackRoute={route.params.stackRoute}/>
         </View>
@@ -47,9 +101,29 @@ const AIPage = ({navigation,route})=>{
 }
 const DVPage = ({navigation,route})=>{
 // TODO get search words from route
+let [keyWord,setkeyWord] = useState("");
+useEffect(() => {  // when focus
+    const unsubscribe = navigation.addListener('focus', () => {
+    //   console.log(global.nowTab)
+    //   console.log("MT");
+      global.nowTab = "DVT";
+      if(global.search.searchTabPage === "DV" && global.search.keyWord !== keyWord){
+          setkeyWord(global.search.keyWord);
+      }
+    });
+
+    return unsubscribe;
+  });
+  const resetkeyWord = ()=>{
+    setkeyWord("");
+}
     return (
         <View>
-            <ArticleList setHide={route.params.setHide} 
+            <ArticleList 
+            type="DV"
+            keyWord={keyWord}
+            resetkeyWord={resetkeyWord}
+            setHide={route.params.setHide} 
             stackNavigation={route.params.stackNavigation}   
             stackRoute={route.params.stackRoute}/>
         </View>

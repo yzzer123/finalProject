@@ -1,7 +1,8 @@
 import React,{useEffect, useState} from 'react';
 import {
-    FlatList, Alert, View,Text,
-    TouchableOpacity
+    Alert, View,Text,
+    TouchableOpacity,
+
 } from 'react-native';
 import styles from './style';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -16,11 +17,13 @@ const  clearHistory = async (data)=>{
     }
 }
 
-const ListItem = ({item,index,data,update})=>{
+const ListItem = ({item,index,data,update,setText})=>{
 
     return (
         <View style={styles.itemContainer}>
-            <Text style={styles.itemText} >{item}</Text>
+            <Text style={styles.itemText}
+            onPress={()=>{setText(item)}}
+            >{item+"                          "}</Text>
             <Icon name="delete"
             onPress={()=>{
                 data.splice(index,1);
@@ -37,31 +40,31 @@ const Header = ({data,update})=>{
     return (
         <View style={styles.headerContainer} >
             <Text style={styles.leftText}>Search Histroy</Text>
-            <TouchableOpacity 
-            style={styles.rightButton}
+           <Text
             onPress={()=>{
                 clearHistory(data);
                 update(Math.random()); // give a random number to make component re-render
             }}
-            ><Text
-            style={styles.rightText}
-            >Clear</Text></TouchableOpacity>
+            style={[styles.rightText,styles.rightButton]}
+            >Clear</Text>
         </View>
     )
 }
 
-const HistoryList=({data})=>{
+const HistoryList=({data,setText})=>{
    
    
     [update,setUpdate] = useState(12); // make stateless component re-render 
-
     return (
-        <FlatList
-            keyExtractor={(item)=>item}
-            data={data}
-            renderItem={({item,index})=><ListItem  item={item} update={setUpdate} index={index} data={data} />}
-            ListHeaderComponent={()=>{return (data.length == 0?  ( <></>):(<Header data={data} update={setUpdate} />))}}
-         />
+        <>
+      
+         {data.length == 0?  (null):(<Header data={data} update={setUpdate} />)}
+         {
+             data.map((value,index)=>{
+               return ( <ListItem  item={value} update={setUpdate} setText={setText} index={index} data={data} />);
+             })
+         }
+         </>
     );
 }
 
