@@ -21,14 +21,14 @@ const DetailItem = ({style,name,color="#999d9c",type="material", text})=>{
     )
 }
 
-const ArticleItem = ({item,type, index})=>{
+const ArticleItem = ({item,type, index,action})=>{
   
     return (
        
            <View style={styles.articleContainer}>
             <TouchableOpacity
             style={styles.touch}
-            onPress={()=>{console.log("passage")}}
+            onPress={()=>{action("ArticleScreen")}}
             >
             <Image style={styles.articleImage}  source={{uri:item.backgroundImageUri}}/> 
                 {/*background Image */}

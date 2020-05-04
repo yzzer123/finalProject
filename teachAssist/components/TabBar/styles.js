@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:'center',
         backgroundColor:"white",
-        height:50, 
-        alignItems: 'center',
+        height:80, 
+        alignItems: 'flex-end',
     },
     LabBarText:{ // label text
         fontSize: 10,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     BarIconContainer:{ // the container of four tabs
         width: global.gScreen.WIDTH*3/4,
         flexDirection:'row',
-
+        marginBottom: 13
     },
     search:{ // search button
         position:'absolute',

@@ -65,9 +65,7 @@ class SearchPage extends PureComponent{
     }
     componentDidMount(){
 
-        setTimeout(()=>{
-            this._search.focus();
-        },200)
+        
         this.getHistory()
         this.setHide(false);
     }
@@ -98,10 +96,14 @@ class SearchPage extends PureComponent{
     }
     render(){
         return (
-            <ScrollView  keyboardShouldPersistTaps='handled'  style={{backgroundColor:'white',flex:1}} >
+            <ScrollView  keyboardShouldPersistTaps='handled'  style={{backgroundColor:'white',marginTop:20,flex:1}} 
+         
+         showsVerticalScrollIndicator={false}
+            >
 
             <SearchBar
             platform="android"
+            autoFocus={true}
             ref={search => this._search = search}
             lightTheme
             containerStyle={{backgroundColor:'white',borderWidth:0}}
@@ -109,6 +111,7 @@ class SearchPage extends PureComponent{
             keyboardType="web-search"
             returnKeyType='search'
             value={this.state.text}
+            
             inputStyle={{color:'black'}}
             onSubmitEditing={(event)=>{
                 this.setState({submitted:true});

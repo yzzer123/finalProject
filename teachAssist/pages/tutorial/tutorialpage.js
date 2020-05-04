@@ -85,23 +85,13 @@ const TutorialScreen = ({navigation, route})=>{
         backgroundColor={'white'} 
         animated={true} 
         hidden={false}
+        translucent={true}
           barStyle="dark-content"  
           />
         <Stack.Navigator
         // initialRouteName="TabScreen"
         >
-             <Stack.Screen 
-                name="ArticleScreen"
-                component={ArticlePage}
-                options={{
-                //    headerShown:false,
-                   cardStyleInterpolator:CardStyleInterpolators.forVerticalIOS,
-                }}
-                initialParams={{
-                    setHide:setrealHide,
-                    getbarState:barState,
-                }}
-            />
+             
             
             <Stack.Screen
                 name="TabScreen"
@@ -114,15 +104,28 @@ const TutorialScreen = ({navigation, route})=>{
                     headerShown:false,
                 }}
             />
+           
            <Stack.Screen 
                 name="SearchScreen"
                 component={SearchPage}
                 options={{
                    headerShown:false,
-                //    cardStyleInterpolator:CardStyleInterpolators.forVerticalIOS
+                //    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
                 }}
                 initialParams={{
 
+                    setHide:setrealHide,
+                    getbarState:barState,
+                }}
+            />
+            <Stack.Screen 
+                name="ArticleScreen"
+                component={ArticlePage}
+                options={{
+                    headerShown:false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+                }}
+                initialParams={{
                     setHide:setrealHide,
                     getbarState:barState,
                 }}

@@ -56,6 +56,7 @@ class ArticleList extends Component{
         // },5000)
         
     }
+    goToArticleScreen = this.props.stackNavigation.navigate
     shouldComponentUpdate(nextProps,nextState){
         if(this.props.keyWord !== nextProps.keyWord){
             if(nextState.updated === true){
@@ -78,7 +79,7 @@ class ArticleList extends Component{
                 }else if(nextProps.keyWord !== "" ){
                     LayoutAnimation.easeInEaseOut()
                     this.state.showSearchBar = true;
-                    console.log(nextProps.keyWord)
+                    // console.log(nextProps.keyWord)
                     let key = nextProps.keyWord.toLowerCase();
                     this.virsualList = this.articleList.filter((item)=>{
                         return (item.title.toLowerCase().indexOf(key)!==-1 || item.subTitle.toLowerCase().indexOf(key)!==-1 );
@@ -120,10 +121,11 @@ class ArticleList extends Component{
         }
         if (nowOffsetY<40||(nowOffsetY < this.offsetY && !this.barHideState)){
             // LayoutAnimation.configureNext(LayoutAnimation.create(170,'linear','opacity'))
+            LayoutAnimation.easeInEaseOut()
             this.setHide(true);
             this.barHideState = true;
         }else if (nowOffsetY > this.offsetY && this.barHideState ){
-            LayoutAnimation.configureNext(LayoutAnimation.create(170,'linear','opacity'))
+            LayoutAnimation.easeInEaseOut()
             this.setHide(false);
             this.barHideState = false;
         }
@@ -136,7 +138,7 @@ class ArticleList extends Component{
         setTimeout(()=>{
             this.setState({refreshing:false});   
         }, 5000)
-        console.log("hello");
+       
     }
     scrollToTop=()=>{
         this._FlatList.scrollToOffset({offset:0, animated:true});
@@ -167,7 +169,7 @@ class ArticleList extends Component{
            removeClippedSubviews={true}
            //if list is empty
            ListEmptyComponent={<Find404 />}
-           renderItem={({item,index})=>(<ArticleItem type={this.props.type}  index={index} item={item}/>)}
+           renderItem={({item,index})=>(<ArticleItem type={this.props.type} action={this.goToArticleScreen} index={index} item={item}/>)}
            keyExtractor={(item,index)=>`${index}`}
            ListFooterComponent={()=>(this.virsualList.length !== 0 ?<Footer/>: <></>)}
            />

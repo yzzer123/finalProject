@@ -60,7 +60,7 @@ function MyTabBar({ state, descriptors, navigation, stackNavigation,position,get
           switch(label){
               case "MobileTech":
                   labelName = "MT";
-                  nowColor = 'skyblue'
+                  nowColor = '#009ad6'
                   TabIcon =()=> ( <MtIcon  name="react"  size={25} color={nowColor}/>);
                   break;
               case "Python":
