@@ -1,6 +1,8 @@
 import  React from 'react';
+import './global';
 import { 
-  View
+  View,
+  StatusBar
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -10,15 +12,17 @@ import  FounIcon  from 'react-native-vector-icons/Foundation';
 import IssueScreen from './pages/issue/issuepage';
 import TutorialScreen from './pages/tutorial/tutorialpage';
 import UserScreen from './pages/user/userpage';
-
 // Bottom Tabs
 const Tab = createBottomTabNavigator();
 
 
 const App = () =>{
   return (
+  
     <NavigationContainer>
+      
     <Tab.Navigator
+      
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           // different icons for each tab
@@ -36,7 +40,7 @@ const App = () =>{
         },
       })}
       tabBarOptions={{
-        activeTintColor: '#2894FF',
+        activeTintColor: global.gColor.themeColor,
         inactiveTintColor: '#C0C0C0',
       }}
       animationEnabled={true}
@@ -48,6 +52,7 @@ const App = () =>{
       <Tab.Screen name="User" component={UserScreen} />
     </Tab.Navigator>
   </NavigationContainer>
+ 
   );
 
 }
