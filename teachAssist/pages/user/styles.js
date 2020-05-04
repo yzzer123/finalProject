@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     ,
     bottomInnerStyle:{
         width:(width/3)+1,
-        height:40,
         backgroundColor:'rgba(255,255,255,0.4)',
         justifyContent: 'center',
         alignItems:'center',

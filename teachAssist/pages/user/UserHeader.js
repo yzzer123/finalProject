@@ -5,7 +5,8 @@ import {
     View,
     Image,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    StatusBar
 } from 'react-native';
 import styles from './styles'
 const width=Dimensions.get('window').width
@@ -28,6 +29,12 @@ export default class UserHeader extends Component{
     TopView(){
         return(
             <View style={styles.topViewStyleView} >
+                <StatusBar
+                    backgroundColor={'skyblue'}
+                    animated={true}
+                    hidden={false}
+                    barStyle='light-content'
+                />
                 <Image 
                     style={styles.leftIconStyle}
                     source={require('./image/avatar.jpg')}
@@ -38,12 +45,6 @@ export default class UserHeader extends Component{
                     </Text>
 
                 </View>
-                <TouchableOpacity>
-                    <Image 
-                        style={{marginRight:15,height:30,width:10}}
-                        source={require('./image/arrows.png')}
-                    />
-                </TouchableOpacity>
             </View>
         )
     }
