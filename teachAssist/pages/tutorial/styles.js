@@ -6,11 +6,12 @@ import {
 } from 'react-native';
 
 const styles = StyleSheet.create({
-    testContainer:{
+    testContainer:{ // the style for test
         flex:1,
         alignItems: "center",
         justifyContent: 'center',
-    }
+    },
+  
 });
 
 export default styles;
