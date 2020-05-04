@@ -19,7 +19,7 @@ const UserPages = ({navigation})=>{
     return (
         <View Style={styles.scrollViewStyle}>
                 <UserHeader/>
-                <View style={styles.containStyle}>
+                <View style={[styles.containStyle,{marginTop:10}]}>
                 <TouchableOpacity  onPress={() => navigation.navigate('Favourite')} style={{width:Dimensions.get('window').width}}>
                    <View style={styles.leftViewStyle}>
                         <IIcon 
@@ -79,7 +79,7 @@ const UserPages = ({navigation})=>{
                     </View> 
                  </TouchableOpacity>
             </View>
-            <View style={styles.containStyle}>
+            <View style={[styles.containStyle,{marginTop:10}]}>
                 <TouchableOpacity onPress={() => navigation.navigate('Setting')} style={{width:Dimensions.get('window').width}}>
                    <View style={styles.leftViewStyle}>
                         <CIcon 
@@ -94,7 +94,7 @@ const UserPages = ({navigation})=>{
                     </View> 
                  </TouchableOpacity>
             </View>
-            <View style={styles.containStyle}>
+            <View style={[styles.containStyle,{marginTop:10}]}>
                 <TouchableOpacity onPress={() => navigation.navigate('About-us')} style={{width:Dimensions.get('window').width}}>
                    <View style={styles.leftViewStyle}>
                         <IIcon 

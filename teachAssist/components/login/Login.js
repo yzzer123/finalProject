@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {} 
 import {
   AppRegistry,
   Text,
@@ -68,7 +67,7 @@ export default class Login extends Component{
                 <View style={styles.setting}>
                         <Text>LOST PASSWORD</Text>
                         <Text>NEW USER</Text>
-                    </View>
+                </View>
             </View>
         )
     }

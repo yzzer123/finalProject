@@ -69,6 +69,17 @@ const styles = StyleSheet.create({
     },
     scrollViewStyle:{
         backgroundColor:'#e8e8e8',
+    },
+    TitleStyle:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginLeft:1,
+    },
+    LogoStyle:{
+        width:30,
+        height:30,
+        marginLeft:63,
+        borderRadius:12
     }
 });
 
