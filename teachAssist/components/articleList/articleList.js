@@ -3,27 +3,29 @@ import{
     FlatList,
     Platform,
     LayoutAnimation,
-    UIManager
+    UIManager,
+    Alert
 }from 'react-native';
 import styles,{SCREEN_HEIGHT,SCREEN_WIDTH} from './style';
+import AsyncStorage from '@react-native-community/async-storage';
 import  {FLoatButton,Footer,Find404,ArticleItem,SearchBar} from './article_components';
 import ActionButton from 'react-native-action-button';
-const testData = {
-    pubTime: "1999/10/11",
-    viewTimes: 23,
-    commends: 27,
-    likes: 20,
-    backgroundImageUri: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588064309166&di=f293260cfbfab8e478260a0cad98232a&imgtype=0&src=http%3A%2F%2Ft9.baidu.com%2Fit%2Fu%3D583874135%2C70653437%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D3607%26h%3D2408",
-    title: "测试文章",
-    subTitle: "这是一篇测试文章",
-    commendId:1,
-    articleLink:"",
+// const testData = {
+//     pubTime: "1999/10/11",
+//     viewTimes: 23,
+//     commends: 27,
+//     likes: 20,
+//     backgroundImageUri: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588064309166&di=f293260cfbfab8e478260a0cad98232a&imgtype=0&src=http%3A%2F%2Ft9.baidu.com%2Fit%2Fu%3D583874135%2C70653437%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D3607%26h%3D2408",
+//     title: "测试文章",
+//     subTitle: "这是一篇测试文章",
+//     commendId:1,
+//     articleLink:"",
 
-}
-let datalist = [];
-for(let i=0;i<5;i++){
-    datalist.push(testData);
-}
+// }
+// let datalist = [];
+// for(let i=0;i<5;i++){
+//     datalist.push(testData);
+// }
 
 class ArticleList extends Component{
 
@@ -45,16 +47,107 @@ class ArticleList extends Component{
         this.setHide = props.setHide; // to hide the bottom bar
         this.stackNavigation = props.stackNavigation;
         this.stackRoute = props.stackRoute;
-        
+        this.hashstate = null;
+    }
+    async readLocalState(){
+        try{
+            const listHash = await AsyncStorage.getItem('list_hash_'+this.props.type);
+            // console.log(listHash)
+            this.hashstate = listHash;
+            return;
+        } catch(e){
+            return ;
+        }
+    }
+    async readLocalData(){
+        try{
+            const listHash = await AsyncStorage.getItem('articlelist_'+this.props.type);
+            if(listHash!==null){
+                this.articleList =  JSON.parse(listHash);
+                return
+            }else{
+                return ;
+            }
+        } catch(e){
+            return ;
+        }
     }
     componentDidMount(){
-        this.articleList = datalist;
-        this.virsualList=[...this.articleList];
-        this.setState({refreshing:false});
+        //先获取本地列表哈希值
+        this.readLocalState()
+        const state =this.hashstate;
+       
+        if(!state){
+            fetch(`${global.server}/articles?type=${this.props.type}`,{method:'GET'})
+            .then((Response)=>Response.json())
+            .then(data=>{
+               
+                this.articleList = data;
+                this.virsualList = [...data];
+                this.setState({refreshing:false});
+            })
+            .catch(e=>{
+                this.setState({refreshing:false});
+                Alert.alert("网络错误，检查一下是否联网了吧∑(っ°Д°;)っ");
+            })
+        }else{
+            fetch(`${global.server}/hash?name=${this.props.type}`,{method:'GET'})
+            .then(Response=>Response.json())
+            .then(data=>{
+                if(data[0].hash_value === state){
+                     this.readLocalData();
+                    this.virsualList = [...this.articleList];
+                    this.setState({refreshing:false});
+                }else{
+                    this.hashstate = data[0].hash_value;
+                    fetch(`${global.server}/articles?type=${this.props.type}`,{method:'GET'})
+                    .then((Response)=>Response.json())
+                    .then(data=>{
+                        this.articleList = data;
+                        this.virsualList = [...data];
+                        this.setState({refreshing:false});
+                    })
+                    .catch(e=>{
+                        this.setState({refreshing:false});
+                        Alert.alert("网络错误，检查一下是否联网了吧∑(っ°Д°;)っ");
+                    })
+                }
+            })
+            .catch(e=>{
+                 this.readLocalData();
+                this.virsualList = [...this.articleList];
+                this.setState({refreshing:false});
+            })
+
+        }
+
+
+
+        // this.articleList = datalist;
+        // this.virsualList=[...this.articleList];
+        
         // setInterval(()=>{
         //     console.log(this.state.search);
         // },5000)
         
+    }
+    async storeSate(){
+        try{
+            AsyncStorage.setItem('list_hash_'+this.props.type,this.hashstate);
+        }catch(e){
+            //
+        }
+    }
+    async storeSate(){
+        try{
+           AsyncStorage.setItem('articlelist_'+this.props.type,JSON.parse(this.articleList));
+
+        }catch(e){
+            //
+        }
+    }
+    componentWillUnmount(){
+
     }
     goToArticleScreen = this.props.stackNavigation.navigate
     shouldComponentUpdate(nextProps,nextState){
@@ -134,10 +227,30 @@ class ArticleList extends Component{
     }
     reFresh = ()=>{ // do when freshing
         this.setState({refreshing: true}); 
-       this.setHide(this.barHideState)
-        setTimeout(()=>{
-            this.setState({refreshing:false});   
-        }, 5000)
+        fetch(`${global.server}/hash?name=${this.props.type}`,{method:'GET'})
+        .then(Response=>Response.json())
+        .then(data=>{
+            if(data[0].hash_value === this.hashstate){
+                
+                this.setState({refreshing:false});
+            }else{
+                fetch(`${global.server}/articles?type=${this.props.type}`,{method:'GET'})
+                .then((Response)=>Response.json())
+                .then(data=>{
+                    this.articleList = data;
+                    this.virsualList = [...data];
+                    this.setState({refreshing:false});
+                })
+                .catch(e=>{
+                    this.setState({refreshing:false});
+                    Alert.alert("网络错误，检查一下是否联网了吧∑(っ°Д°;)っ");
+                })
+            }
+        })
+        .catch(e=>{
+            Alert.alert("刷新失败");
+            this.setState({refreshing:false});
+        })
        
     }
     scrollToTop=()=>{

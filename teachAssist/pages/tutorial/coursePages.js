@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import{
-    View
+    View,
+    StatusBar
 }from 'react-native';
 import { Icon } from 'react-native-elements';
 import ArticleList from '../../components/articleList/articleList';
@@ -13,7 +14,6 @@ const MtPage = ({navigation,route})=>{
         //   console.log("MT");
           global.nowTab = "MT";
           if(global.search.searchTabPage === "MT" && global.search.keyWord !== keyWord){
-          
               setkeyWord(global.search.keyWord);
           }
          
@@ -47,6 +47,7 @@ const PythonPage = ({navigation,route})=>{
        //   console.log(global.nowTab)
        //   console.log("MT");
          global.nowTab = "PY";
+         
          if(global.search.searchTabPage === "PY" && global.search.keyWord !== keyWord){
              setkeyWord(global.search.keyWord);
          }
@@ -77,6 +78,7 @@ useEffect(() => {  // when focus
     //   console.log(global.nowTab)
     //   console.log("MT");
       global.nowTab = "AI";
+      
       if(global.search.searchTabPage === "AI" && global.search.keyWord !== keyWord){
           setkeyWord(global.search.keyWord);
       }
@@ -107,6 +109,7 @@ useEffect(() => {  // when focus
     //   console.log(global.nowTab)
     //   console.log("MT");
       global.nowTab = "DVT";
+      
       if(global.search.searchTabPage === "DV" && global.search.keyWord !== keyWord){
           setkeyWord(global.search.keyWord);
       }

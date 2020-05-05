@@ -1,4 +1,4 @@
-import React, { Component,PureComponent  } from 'react';
+import React, { Component  } from 'react';
 
 import {
     TouchableOpacity,
@@ -9,7 +9,7 @@ import {
 
 const c_duration = 200;
 const c_deviceHeight = Dimensions.get("window").height;
-export default class CoverLayer extends PureComponent {
+export default class CoverLayer extends Component {
 
    
 
@@ -100,6 +100,7 @@ export default class CoverLayer extends PureComponent {
     // 从底部弹出界面
     showFromBottom() {
         return (
+            
             Animated.timing(this.state.bottom, {
                 toValue: 0,
                 duration: c_duration
@@ -141,7 +142,9 @@ export default class CoverLayer extends PureComponent {
             })
         )
     }
-
+    getShown(){
+        return this.state.isShow;
+    }
     render() {
         return(
             this.state.isShow &&

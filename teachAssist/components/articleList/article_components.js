@@ -28,7 +28,7 @@ const ArticleItem = ({item,type, index,action})=>{
            <View style={styles.articleContainer}>
             <TouchableOpacity
             style={styles.touch}
-            onPress={()=>{action("ArticleScreen")}}
+            onPress={()=>{action("ArticleScreen",{type:type, article:item})}}
             >
             <Image style={styles.articleImage}  source={{uri:item.backgroundImageUri}}/> 
                 {/*background Image */}
