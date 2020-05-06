@@ -13,6 +13,9 @@ const MtPage = ({navigation,route})=>{
         //   console.log(global.nowTab)
         //   console.log("MT");
           global.nowTab = "MT";
+        //   StatusBar.setBarStyle("dark-content");
+        //   StatusBar.setBackgroundColor("white");
+        //   StatusBar.animated = true;
           if(global.search.searchTabPage === "MT" && global.search.keyWord !== keyWord){
               setkeyWord(global.search.keyWord);
           }
@@ -47,7 +50,9 @@ const PythonPage = ({navigation,route})=>{
        //   console.log(global.nowTab)
        //   console.log("MT");
          global.nowTab = "PY";
-         
+        //  StatusBar.setBarStyle("dark-content");
+        //  StatusBar.setBackgroundColor("white");
+        //  StatusBar.animated = true;
          if(global.search.searchTabPage === "PY" && global.search.keyWord !== keyWord){
              setkeyWord(global.search.keyWord);
          }
@@ -78,7 +83,9 @@ useEffect(() => {  // when focus
     //   console.log(global.nowTab)
     //   console.log("MT");
       global.nowTab = "AI";
-      
+    //   StatusBar.setBarStyle("dark-content");
+    //   StatusBar.setBackgroundColor("white");
+    //   StatusBar.animated = true;
       if(global.search.searchTabPage === "AI" && global.search.keyWord !== keyWord){
           setkeyWord(global.search.keyWord);
       }
@@ -108,8 +115,10 @@ useEffect(() => {  // when focus
     const unsubscribe = navigation.addListener('focus', () => {
     //   console.log(global.nowTab)
     //   console.log("MT");
-      global.nowTab = "DVT";
-      
+      global.nowTab = "DV";
+    //   StatusBar.setBarStyle("dark-content");
+    //   StatusBar.setBackgroundColor("white");
+    //   StatusBar.animated = true;
       if(global.search.searchTabPage === "DV" && global.search.keyWord !== keyWord){
           setkeyWord(global.search.keyWord);
       }
