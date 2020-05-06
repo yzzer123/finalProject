@@ -31,7 +31,6 @@ const UserScreen = ({navigation})=>{
         return unsubscribe;
       });
     return (
-        <>
         <User.Navigator 
             screenOptions={{
                 headerStyle:{
@@ -49,7 +48,6 @@ const UserScreen = ({navigation})=>{
             <User.Screen name='Setting' component={setting} options={{ headerTitle: props => <SetTitle {...props} /> }} />
             <User.Screen name ='About-us' component={about_us} options={{ headerTitle: props => <AboTitle {...props} /> }} />  
         </User.Navigator>
-        </>
     )
 
 }

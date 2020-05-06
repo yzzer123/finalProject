@@ -17,9 +17,9 @@ import UserHeader from './UserHeader'
 const UserPages = ({navigation})=>{
     const list=functions
     return (
-        <View Style={styles.scrollViewStyle}>
+        <View Style={styles.ViewStyle}>
                 <UserHeader/>
-                <View style={[styles.containStyle,{marginTop:10}]}>
+                <View style={[styles.containStyle,{marginTop:3}]}>
                 <TouchableOpacity  onPress={() => navigation.navigate('Collect')} style={{width:Dimensions.get('window').width}}>
                    <View style={styles.leftViewStyle}>
                         <IIcon 
@@ -94,7 +94,6 @@ const UserPages = ({navigation})=>{
                     </View> 
                  </TouchableOpacity>
             </View>
-            <Text style={{textAlign:'center',marginTop:20}}>Teaching-Assistant</Text>
         </View>
     )
 

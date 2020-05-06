@@ -63,12 +63,14 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         backgroundColor:'white',
         alignItems:'center',
-        height:40,
-        borderBottomColor: '#e8e8e8',
+        height:60,
+        borderBottomColor: 'white',
         borderBottomWidth:0.5,
     },
-    scrollViewStyle:{
-        backgroundColor:'#e8e8e8',
+    ViewStyle:{
+        backgroundColor:'blue',
+        height:Dimensions.get('window').height,
+        width:Dimensions.get('window').width
     },
     TitleStyle:{
         flexDirection:'row',
