@@ -70,7 +70,17 @@ const TutorialScreen = ({navigation, route})=>{
 
     
     [barState, setBarState] = useState(true);
-   
+    useEffect(() => {  // when focus
+        const unsubscribe = navigation.addListener('focus', () => {
+       
+          StatusBar.setBackgroundColor("white")
+          StatusBar.setBarStyle("dark-content")
+    
+          StatusBar.setTranslucent(true)
+        return unsubscribe;
+      });
+     return unsubscribe;
+  });
     useEffect(()=>{   // do not hide the bar directly
         navigation.setOptions({tabBarVisible: barState});
        
@@ -78,7 +88,7 @@ const TutorialScreen = ({navigation, route})=>{
     const setrealHide = (bool)=>{
         navigation.setOptions({tabBarVisible: bool});
     }
-    
+   global.setHide = setBarState;
     return (
        <>
        <StatusBar 

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import{
     FlatList,
     View,Text,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native';
 import {ListItem,Icon,Input} from 'react-native-elements';
 import styles from './style';
@@ -54,11 +55,13 @@ export default class extends Component{
             text:""
         }
     }
-
+    
     componentDidMount(){
         this.setState({comments:[...comments]});
+        
+        
         setTimeout(()=>{
-
+           
             this.setState({refreshing:false});
         },2000);
     }
