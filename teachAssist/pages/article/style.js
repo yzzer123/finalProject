@@ -6,7 +6,7 @@ export default  styles = StyleSheet.create({
     Web:{
         backgroundColor:'white',
         width:global.gScreen.WIDTH,
-        marginTop: -40,
+        marginTop: -120,
         zIndex: -2,
         
     },

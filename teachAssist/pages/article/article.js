@@ -64,6 +64,7 @@ const TopBar = ({title,type="MT",leftaction,rightaction})=>{
         leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:leftaction }}
         centerComponent={{ text: title, style: { color: '#fff',fontWeight:'bold' } }}
         rightComponent={{ icon: 'refresh', color: '#fff' ,onPress:rightaction}}
+        containerStyle={{height:85}}
         statusBarProps={{ barStyle: 'dark-content',translucent:true,backgroundColor:"rgba(0,0,0,0)" }}
           ViewComponent={LinearGradient} // Don't forget this!
           linearGradientProps={{
@@ -380,17 +381,18 @@ export default class ArticlePage extends Component{
    render(){
     return (   
       <>  
+       <TopBar  leftaction={this.goBack} rightaction={this.refresh} type={this.type} title={this.state.article.title} />
          <ScrollView style={{flex:1}}
          showsVerticalScrollIndicator={false}
          >
-                <TopBar  leftaction={this.goBack} rightaction={this.refresh} type={this.type} title={this.state.article.title} />      
+                     
                  <Image source={{uri:this.state.article.backgroundImageUri}} style={styles.ImageStyle} />
                   <WebView
                   scalesPageToFit={false}
                   injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-              
+
                     ref={(web)=>{this._web = web}}
-                    style={{ height:this.state.height}}     
+                     style={{ height:this.state.height}}     
                      containerStyle={styles.Web}
                      bounces={true}
                      domStorageEnabled={true}
@@ -436,7 +438,7 @@ const injectedJavaScript = `
         var divs=document.getElementsByClassName("in-page-preview-buttons"); 
         var divs2=document.getElementsByClassName("icon-chevron-sign-left"); 
         var divs3=document.getElementsByClassName("reader-full-toolbar-shown"); 
-        document.getElementById("reader-full-topInfo").style.fontSize = "9px"; 
+        document.getElementById("reader-full-topInfo").style.visibility = "hidden"; 
         
         document.body.style.backgroundColor="white";    
         for(var i=0;i<divs2.length;i++){
