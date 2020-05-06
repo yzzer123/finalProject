@@ -10,7 +10,7 @@ import CIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import IIcon from 'react-native-vector-icons/MaterialIcons'
 import functions from './UserFunctions'
 
-const FavTitle=()=>{
+const CoTitle=()=>{
     return(
         <View style={styles.TitleStyle}>
             <IIcon name={functions[0].leftIconName} style={styles.LogoStyle} size={30} color={functions[0].IconColor} />
@@ -18,8 +18,7 @@ const FavTitle=()=>{
         </View>
         )
 }
-
-const TagTitle=()=>{
+const RedTitle=()=>{
     return(
         <View style={styles.leftViewStyle}>
             <CIcon name={functions[1].leftIconName} style={styles.LogoStyle} size={30} color={functions[1].IconColor} />
@@ -28,7 +27,7 @@ const TagTitle=()=>{
         )
 }
 
-const RedTitle=()=>{
+const HisTitle=()=>{
     return(
         <View style={styles.leftViewStyle}>
             <CIcon name={functions[2].leftIconName} style={styles.LogoStyle} size={30} color={functions[2].IconColor} />
@@ -37,7 +36,7 @@ const RedTitle=()=>{
         )
 }
 
-const HisTitle=()=>{
+const SetTitle=()=>{
     return(
         <View style={styles.leftViewStyle}>
             <CIcon name={functions[3].leftIconName} style={styles.LogoStyle} size={30} color={functions[3].IconColor} />
@@ -46,22 +45,13 @@ const HisTitle=()=>{
         )
 }
 
-const SetTitle=()=>{
+const AboTitle=()=>{
     return(
         <View style={styles.leftViewStyle}>
-            <CIcon name={functions[4].leftIconName} style={styles.LogoStyle} size={30} color={functions[4].IconColor} />
+            <IIcon name={functions[4].leftIconName} style={styles.LogoStyle} size={30} color={functions[4].IconColor} />
             <Text style={{marginLeft:10,fontSize:20,color:'white',fontWeight:'bold'}}>{functions[4].leftTitle}</Text>
         </View>
         )
 }
 
-const AboTitle=()=>{
-    return(
-        <View style={styles.leftViewStyle}>
-            <IIcon name={functions[5].leftIconName} style={styles.LogoStyle} size={30} color={functions[5].IconColor} />
-            <Text style={{marginLeft:10,fontSize:20,color:'white',fontWeight:'bold'}}>{functions[5].leftTitle}</Text>
-        </View>
-        )
-}
-
-export {FavTitle,TagTitle,RedTitle,HisTitle,SetTitle,AboTitle}
+export {CoTitle,RedTitle,HisTitle,SetTitle,AboTitle}
