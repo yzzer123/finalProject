@@ -5,7 +5,7 @@ import {
     View,
     Image,
     StatusBar,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import CommentList from '../../components/commentlist/commentList';
 import styles from './style';
@@ -19,7 +19,7 @@ const imgLink = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000
 
 const LinearColors = {
   "MT":['skyblue', '#12d8fa',"#a6ffcb"],
-  "python":[ "#FF4E50", "#F9D423"],
+  "PY":[ "#FF4E50", "#F9D423"],
   "AI":["#11998e","#38ef7d","#78ffd6"],
   "DV":["#12c2e9","#c471ed","#f64f59"]
 }
@@ -44,7 +44,7 @@ const Loading = ()=>{
         />
     )
 }
-const TopBar = ({title="Python",type="MT",leftaction,rightaction})=>{
+const TopBar = ({title,type="MT",leftaction,rightaction})=>{
     return (
         <Header
         placement="center"
@@ -55,8 +55,8 @@ const TopBar = ({title="Python",type="MT",leftaction,rightaction})=>{
           ViewComponent={LinearGradient} // Don't forget this!
           linearGradientProps={{
           colors:LinearColors[type],
-          start: { x: 0, y: 0.5 },
-          end: { x: 1, y: 0.5 },
+          start: { x: 0, y: 0 },
+          end: { x: 1, y: 1 },
           }}
           /> 
     )
@@ -90,11 +90,13 @@ export default class ArticlePage extends Component{
             height: 1001,
             isCollected: false,
             isLiked:false,
-            commentNum:2,
-            LikeNum:3,
-            CollectNum:5
+            commentNum:this.props.route.params.article.commends,
+            LikeNum:this.props.route.params.article.likes,
+            CollectNum:this.props.route.params.article.likes,
+            article:this.props.route.params.article,
 
         }
+       this.type = this.props.route.params.type;
        
     }
     setHeight=(height)=>{
@@ -114,30 +116,44 @@ export default class ArticlePage extends Component{
         // pass
       }
     }
+    
     componentDidMount(){
+        
         setTimeout(()=>{
            this.props.route.params.setHide(false);
-          
+         
         },200)
+        // console.log(this.state.article.backgroundImageUri)
+      this.setState({height:1002})
         this._web.reload()
+        
 
     }
+   
     goBack = ()=>{
+     
+      setTimeout(()=>{
+        
+        StatusBar.setBarStyle("dark-content");
+        StatusBar.setBackgroundColor("white");
+        StatusBar.animated = true;
+      },200)
       this.props.navigation.goBack();
     }
     refresh = ()=>{
       this._web.reload();
     }
     componentWillUnmount(){
-      setTimeout(()=>{
-        StatusBar.setBarStyle("dark-content");
+      StatusBar.setBarStyle("dark-content");
         StatusBar.setBackgroundColor("white");
         StatusBar.animated = true;
-      },200)
-     
+      this.props.route.params.setHide(true);
+      
+      
     }
   commentAction=()=>{
     this.coverLayer.show("bottom")
+  
   }
   likeAction=()=>{
     if(!this.state.isLiked){
@@ -159,8 +175,8 @@ export default class ArticlePage extends Component{
          <ScrollView style={{flex:1}}
          showsVerticalScrollIndicator={false}
          >
-                <TopBar title="Python" leftaction={this.goBack} rightaction={this.refresh} />      
-                 <Image source={{uri:imgLink}} style={styles.ImageStyle} />
+                <TopBar  leftaction={this.goBack} rightaction={this.refresh} type={this.type} title={this.state.article.title} />      
+                 <Image source={{uri:this.state.article.backgroundImageUri}} style={styles.ImageStyle} />
                   <WebView
                   scalesPageToFit={false}
                   injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
@@ -175,8 +191,7 @@ export default class ArticlePage extends Component{
                      mixedContentMode="always"
                      startInLoadingState={true}
                       injectedJavaScript={injectedJavaScript}
-                    source={{ uri: link ,header:
-                        "<h1>haha</h1>"}}
+                    source={{ uri: this.state.article["articleLink "]}}
                     javaScriptEnabled={true}
                     onMessage={this.onMessage}    
                     />

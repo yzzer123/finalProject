@@ -13,8 +13,9 @@ global.gScreen = {
 }
 global.nowTab = "";
 global.StatusBar = "";
+global.setHide = "";
 global.gColor = {
     themeColor : "skyblue",
     unActiveColor : '#C0C0C0',
 }
-
+global.server = "http://yzzer.top:5074"
