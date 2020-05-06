@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
 
     },
     leftImgStyle:{
-        width:30,
-        height:30,
+        width:40,
+        height:40,
         marginLeft:6,
         borderRadius:12
     }

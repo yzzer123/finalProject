@@ -8,7 +8,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import  FontIcon  from 'react-native-vector-icons/FontAwesome';
 import  FounIcon  from 'react-native-vector-icons/Foundation';
-
 import IssueScreen from './pages/issue/issuepage';
 import TutorialScreen from './pages/tutorial/tutorialpage';
 import UserScreen from './pages/user/userpage';

@@ -54,7 +54,7 @@ export default class UserHeader extends Component{
         var data=[
                     {'number':num[0],'title':'articles'},
                     {'number':num[1],'title':'commments'},
-                    {'number':num[2],'title':'collects'}
+                    {'number':num[2],'title':'favourite'}
                 ]
                 for(var i =0;i<data.length;i++){
                     var item = data[i];

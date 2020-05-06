@@ -45,18 +45,10 @@ const SetHome=({navigation})=>{
         </View>
     )
 }
-const favourite=({navigation})=>{
+const collect=({navigation})=>{
     return(
         <View>
             <Text  style={{textAlign:'center'}} onPress={()=>navigation.navigate('UserHome')}>favourite</Text>
-        </View>
-    )
-}
-
-const tag=({navigation})=>{
-    return(
-        <View>
-            <Text style={{justifyContent:'center',textAlign:'center'}} onPress={()=>navigation.navigate('UserHome')}>tag</Text>
         </View>
     )
 }
@@ -113,4 +105,4 @@ const about_us=({navigation})=>{
     )
 }
 
-export {favourite,tag,read_time,history,setting,about_us}
+export {collect,read_time,history,setting,about_us}
