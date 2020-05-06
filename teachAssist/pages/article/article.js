@@ -44,6 +44,19 @@ const Loading = ()=>{
         />
     )
 }
+const getId = (type)=>{
+  switch(type){
+    case "MT":
+      return  1;
+    case "PY":
+      return  2;
+    case "AI":
+      return  3;
+    case "DV":
+      return  4;
+                
+  }
+}
 const TopBar = ({title,type="MT",leftaction,rightaction})=>{
     return (
         <Header
@@ -51,6 +64,7 @@ const TopBar = ({title,type="MT",leftaction,rightaction})=>{
         leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:leftaction }}
         centerComponent={{ text: title, style: { color: '#fff',fontWeight:'bold' } }}
         rightComponent={{ icon: 'refresh', color: '#fff' ,onPress:rightaction}}
+        containerStyle={{height:85}}
         statusBarProps={{ barStyle: 'dark-content',translucent:true,backgroundColor:"rgba(0,0,0,0)" }}
           ViewComponent={LinearGradient} // Don't forget this!
           linearGradientProps={{
@@ -92,12 +106,12 @@ export default class ArticlePage extends Component{
             isLiked:false,
             commentNum:this.props.route.params.article.commends,
             LikeNum:this.props.route.params.article.likes,
-            CollectNum:this.props.route.params.article.likes,
+            CollectNum:this.props.route.params.article.collects,
             article:this.props.route.params.article,
 
         }
        this.type = this.props.route.params.type;
-       
+      
     }
     setHeight=(height)=>{
       // console.log("done")
@@ -116,15 +130,53 @@ export default class ArticlePage extends Component{
         // pass
       }
     }
-    
+    setArticle = (article)=>{
+      this.setState({
+        commentNum:article.commends,
+            LikeNum:article.likes,
+            CollectNum:article.collects,
+            article:article,
+      });
+    }
+    setServerDataUpdated=(data)=>{
+      fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
+      {method:"PATCH",
+      headers:{
+        'Accept': 'application/json',
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body:JSON.stringify({
+        hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
+      })})
+      this.setArticle(data);
+    }
     componentDidMount(){
         
+        fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
+            {method:"PATCH",
+            headers:{
+              'Accept': 'application/json',
+              "Content-Type": "application/json;charset=utf-8"
+            },
+            body:JSON.stringify({
+              viewTimes:this.props.route.params.article.viewTimes + 1
+            })})
+        .then((responese)=>responese.json())
+        .then(data=>{
+          this.setServerDataUpdated(data);
+        })
+        if(global.user.favorite.indexOf(this.state.article.id)!==-1){
+          this.setState({isLiked:true});
+        }
+        if(global.user.Collect.indexOf(this.state.article.id)!==-1){
+          this.setState({isCollected:true});
+        }
         setTimeout(()=>{
            this.props.route.params.setHide(false);
-         
+          
         },200)
         // console.log(this.state.article.backgroundImageUri)
-      this.setState({height:1002})
+     
         this._web.reload()
         
 
@@ -155,34 +207,192 @@ export default class ArticlePage extends Component{
     this.coverLayer.show("bottom")
   
   }
+  
   likeAction=()=>{
     if(!this.state.isLiked){
-      this.setState({isLiked:true,LikeNum:this.state.LikeNum + 1});
+      // make a promice to resolve the async problem
+      let p = new Promise((resolve,reject)=>{
+        this.setState({isLiked:true,LikeNum:this.state.LikeNum + 1})
+        global.user.favorite.push(this.state.article.id);
+        return resolve();
+      })  
+     
+      p.then(()=>{
+        //update the favorite list in server
+        fetch(`${global.server}/favorite/${global.user.id}`,
+        {method:"PATCH",
+              headers:{
+                'Accept': 'application/json',
+                "Content-Type": "application/json;charset=utf-8"
+              },
+              body:JSON.stringify({
+                list:global.user.favorite
+        })})
+        // update the articles data
+        fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
+        {method:"PATCH",
+        headers:{
+          'Accept': 'application/json',
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        body:JSON.stringify({
+          likes:this.state.LikeNum
+        })})
+        // update the hash value
+        fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
+        {method:"PATCH",
+        headers:{
+          'Accept': 'application/json',
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        body:JSON.stringify({
+          hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
+        })})
+
+    })
+      
     }else{
-      this.setState({isLiked:false,LikeNum:this.state.LikeNum - 1});
+    
+      let p = new Promise((resolve,reject)=>{
+        this.setState({isLiked:false,LikeNum:this.state.LikeNum - 1})
+        global.user.favorite.splice(global.user.favorite.indexOf(this.state.article.id),1);
+        return resolve();
+      })  
+      p.then(()=>{
+        //update the favorite list in server
+        fetch(`${global.server}/favorite/${global.user.id}`,
+        {method:"PATCH",
+              headers:{
+                'Accept': 'application/json',
+                "Content-Type": "application/json;charset=utf-8"
+              },
+              body:JSON.stringify({
+                list:global.user.favorite
+        })})
+            // update the articles data
+        fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
+          {method:"PATCH",
+          headers:{
+            'Accept': 'application/json',
+            "Content-Type": "application/json;charset=utf-8"
+          },
+          body:JSON.stringify({
+            likes:this.state.LikeNum
+        })})
+         // update the hash value
+        fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
+      {method:"PATCH",
+      headers:{
+        'Accept': 'application/json',
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body:JSON.stringify({
+        hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
+      })})
+      })
+      
     }
   }
+  //logic like likeaction()
   collectAction=()=>{
     if(!this.state.isCollected){
-      this.setState({isCollected:true,CollectNum:this.state.CollectNum + 1});
+       
+      let p = new Promise((resolve,reject)=>{
+        this.setState({isCollected:true,CollectNum:this.state.CollectNum + 1});
+        global.user.Collect.push(this.state.article.id);
+        return resolve();
+      })  
+      
+      p.then(()=>{
+         //update the collect list in server
+        fetch(`${global.server}/Collect/${global.user.id}`,
+        {method:"PATCH",
+              headers:{
+                'Accept': 'application/json',
+                "Content-Type": "application/json;charset=utf-8"
+              },
+              body:JSON.stringify({
+                list:global.user.Collect
+        })})
+         // update the articles data
+        fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
+        {method:"PATCH",
+        headers:{
+          'Accept': 'application/json',
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        body:JSON.stringify({
+          collects:this.state.CollectNum
+        })})
+        // update the hash value
+        fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
+      {method:"PATCH",
+      headers:{
+        'Accept': 'application/json',
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body:JSON.stringify({
+        hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
+      })})
+      
+      })
+      
     }else{
-      this.setState({isCollected:false,CollectNum:this.state.CollectNum - 1});
+        
+      let p = new Promise((resolve,reject)=>{
+        this.setState({isCollected:false,CollectNum:this.state.CollectNum - 1})
+        global.user.Collect.splice(global.user.Collect.indexOf(this.state.article.id),1)
+        return resolve();
+      })  
+      
+      
+      p.then(()=>{
+        //update the collect list in server
+        fetch(`${global.server}/Collect/${global.user.id}`,
+        {method:"PATCH",
+              headers:{
+                'Accept': 'application/json',
+                "Content-Type": "application/json;charset=utf-8"
+              },
+              body:JSON.stringify({
+                list:global.user.Collect
+        })})
+        fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
+        {method:"PATCH",
+        headers:{
+          'Accept': 'application/json',
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        body:JSON.stringify({
+          collects:this.state.CollectNum
+        })})
+        fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
+      {method:"PATCH",
+      headers:{
+        'Accept': 'application/json',
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body:JSON.stringify({
+        hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
+      })})
+      })
     }
   }
    render(){
     return (   
       <>  
+       <TopBar  leftaction={this.goBack} rightaction={this.refresh} type={this.type} title={this.state.article.title} />
          <ScrollView style={{flex:1}}
          showsVerticalScrollIndicator={false}
          >
-                <TopBar  leftaction={this.goBack} rightaction={this.refresh} type={this.type} title={this.state.article.title} />      
+                     
                  <Image source={{uri:this.state.article.backgroundImageUri}} style={styles.ImageStyle} />
                   <WebView
                   scalesPageToFit={false}
                   injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-              
+
                     ref={(web)=>{this._web = web}}
-                    style={{ height:this.state.height}}     
+                     style={{ height:this.state.height}}     
                      containerStyle={styles.Web}
                      bounces={true}
                      domStorageEnabled={true}
@@ -220,7 +430,7 @@ export default class ArticlePage extends Component{
    }
     
 }
-// the javascript code put into 
+// the javascript code put into the webview
 
 const injectedJavaScript = `
   window.onload=   function () {
@@ -228,7 +438,7 @@ const injectedJavaScript = `
         var divs=document.getElementsByClassName("in-page-preview-buttons"); 
         var divs2=document.getElementsByClassName("icon-chevron-sign-left"); 
         var divs3=document.getElementsByClassName("reader-full-toolbar-shown"); 
-        document.getElementById("reader-full-topInfo").style.fontSize = "9px"; 
+        document.getElementById("reader-full-topInfo").style.visibility = "hidden"; 
         
         document.body.style.backgroundColor="white";    
         for(var i=0;i<divs2.length;i++){

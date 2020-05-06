@@ -29,12 +29,12 @@ export default class UserHeader extends Component{
     TopView(){
         return(
             <View style={styles.topViewStyleView} >
-                <StatusBar
+                {/* <StatusBar
                     backgroundColor={'skyblue'}
                     animated={true}
                     hidden={false}
                     barStyle='light-content'
-                />
+                /> */}
                 <Image 
                     style={styles.leftIconStyle}
                     source={require('./image/avatar.jpg')}
