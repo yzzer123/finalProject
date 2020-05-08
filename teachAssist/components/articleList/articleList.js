@@ -165,9 +165,9 @@ class ArticleList extends Component{
 
         })
         setTimeout(()=>{
-            setInterval(()=>{
-                this.intervalFresh();
-            },2000)
+            // setInterval(()=>{
+            //     this.intervalFresh();
+            // },600000000)
         },2000)
         // this.articleList = datalist;
         // this.virsualList=[...this.articleList];
