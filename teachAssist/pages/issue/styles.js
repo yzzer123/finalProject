@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: "center",
         justifyContent: 'center',
+    },
+    Image:{
+        width:global.gScreen.WIDTH,
+        height:140,
     }
 });
 

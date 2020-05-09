@@ -6,6 +6,8 @@ import {
     Image,
     StatusBar,
     ScrollView,
+    Alert,
+    AppState
 } from 'react-native';
 import CommentList from '../../components/commentlist/commentList';
 import styles from './style';
@@ -22,8 +24,21 @@ const LinearColors = {
   "PY":[ "#FF4E50", "#F9D423"],
   "AI":["#11998e","#38ef7d","#78ffd6"],
   "DV":["#12c2e9","#c471ed","#f64f59"]
+} 
+//check the date is defined
+const getReadTime=(enterTime,preActiveTime)=>{
+    let timer = new Date();
+    let date = timer.toLocaleDateString();
+    let timeSpan = Math.floor((timer.getTime() - enterTime + preActiveTime )/1000);
+    // console.log(global.user.readTime)
+    // console.log(date)
+    if(global.user.readTime[date] !== undefined){
+      global.user.readTime[date] =  global.user.readTime[date] + timeSpan;
+    }else{
+      global.user.readTime[date] = timeSpan;
+    }
+    return global.user.readTime[date];
 }
-
 const Find404 = ()=>{
 
     return (
@@ -64,7 +79,8 @@ const TopBar = ({title,type="MT",leftaction,rightaction})=>{
         leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:leftaction }}
         centerComponent={{ text: title, style: { color: '#fff',fontWeight:'bold' } }}
         rightComponent={{ icon: 'refresh', color: '#fff' ,onPress:rightaction}}
-        containerStyle={{height:85}}
+        containerStyle={{height:85
+        }}
         statusBarProps={{ barStyle: 'dark-content',translucent:true,backgroundColor:"rgba(0,0,0,0)" }}
           ViewComponent={LinearGradient} // Don't forget this!
           linearGradientProps={{
@@ -108,10 +124,12 @@ export default class ArticlePage extends Component{
             LikeNum:this.props.route.params.article.likes,
             CollectNum:this.props.route.params.article.collects,
             article:this.props.route.params.article,
+            enterPageTime:0,
+            preActiveTime:0,
 
         }
        this.type = this.props.route.params.type;
-      
+       this.isActive = true;
     }
     setHeight=(height)=>{
       // console.log("done")
@@ -147,11 +165,31 @@ export default class ArticlePage extends Component{
       },
       body:JSON.stringify({
         hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
-      })})
+      })}).catch((e)=>{Alert.alert(e)})
       this.setArticle(data);
     }
-    componentDidMount(){
+    _handleAppStateChange = (nextAppState) =>{
+      if (nextAppState!= null && nextAppState === 'active') {
         
+        if (!this.isActive) {
+         
+          this.state.enterPageTime = (new Date()).getTime();
+        }
+        this.isActive = true;
+      }else if(nextAppState != null && nextAppState === 'background'){
+        if(this.isActive){
+         
+          let timer = new Date()
+          this.state.preActiveTime = (timer.getTime() - this.state.enterPageTime);
+        }
+        
+        this.isActive = false;
+      }
+   
+    }
+    componentDidMount(){
+        this.setState({enterPageTime:(new Date()).getTime()})
+        AppState.addEventListener('change',this._handleAppStateChange);
         fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
             {method:"PATCH",
             headers:{
@@ -164,13 +202,27 @@ export default class ArticlePage extends Component{
         .then((responese)=>responese.json())
         .then(data=>{
           this.setServerDataUpdated(data);
-        })
+        }).catch(e=>{Alert.alert(e)})
+        fetch(`${global.server}/users/${global.user.id}`,
+            {method:"PATCH",
+            headers:{
+              'Accept': 'application/json',
+              "Content-Type": "application/json;charset=utf-8"
+            },
+            body:JSON.stringify({
+              viewTimes: global.user.viewTimes + 1
+            })})
+        .then((responese)=>{
+          global.user.viewTimes += 1
+        }).catch(e=>{Alert.alert(e)})
+        
         if(global.user.favorite.indexOf(this.state.article.id)!==-1){
           this.setState({isLiked:true});
         }
         if(global.user.Collect.indexOf(this.state.article.id)!==-1){
           this.setState({isCollected:true});
         }
+
         setTimeout(()=>{
            this.props.route.params.setHide(false);
           
@@ -196,13 +248,29 @@ export default class ArticlePage extends Component{
       this._web.reload();
     }
     componentWillUnmount(){
-      StatusBar.setBarStyle("dark-content");
-        StatusBar.setBackgroundColor("white");
-        StatusBar.animated = true;
       this.props.route.params.setHide(true);
-      
-      
-    }
+      StatusBar.animated = true;
+      StatusBar.setBarStyle("dark-content");
+      StatusBar.setBackgroundColor("white");
+      let getTime = new Promise((resolve,reject)=>{
+        
+        let obj = new Object();
+        obj[(new Date()).toLocaleDateString()]= getReadTime(this.state.enterPageTime,this.state.preActiveTime);
+        
+        return resolve(obj)
+      })
+      getTime.then(obj=>{
+        fetch(`${global.server}/readTime/${global.user.id}`,{
+          method:"PATCH",
+          headers:{
+            'Accept': 'application/json',
+            "Content-Type": "application/json;charset=utf-8"
+          },
+          body:JSON.stringify(obj)
+        }).catch(e=>{Alert.alert(e)})
+  
+      })
+      }
   commentAction=()=>{
     this.coverLayer.show("bottom")
   
@@ -227,7 +295,7 @@ export default class ArticlePage extends Component{
               },
               body:JSON.stringify({
                 list:global.user.favorite
-        })})
+        })}).catch(e=>{Alert.alert(e)})
         // update the articles data
         fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
         {method:"PATCH",
@@ -237,7 +305,7 @@ export default class ArticlePage extends Component{
         },
         body:JSON.stringify({
           likes:this.state.LikeNum
-        })})
+        })}).catch(e=>{Alert.alert(e)})
         // update the hash value
         fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
         {method:"PATCH",
@@ -247,7 +315,7 @@ export default class ArticlePage extends Component{
         },
         body:JSON.stringify({
           hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
-        })})
+        })}).catch(e=>{Alert.alert(e)})
 
     })
       
@@ -268,7 +336,7 @@ export default class ArticlePage extends Component{
               },
               body:JSON.stringify({
                 list:global.user.favorite
-        })})
+        })}).catch(e=>{Alert.alert(e)})
             // update the articles data
         fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
           {method:"PATCH",
@@ -278,7 +346,7 @@ export default class ArticlePage extends Component{
           },
           body:JSON.stringify({
             likes:this.state.LikeNum
-        })})
+        })}).catch(e=>{Alert.alert(e)})
          // update the hash value
         fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
       {method:"PATCH",
@@ -288,7 +356,7 @@ export default class ArticlePage extends Component{
       },
       body:JSON.stringify({
         hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
-      })})
+      })}).catch(e=>{Alert.alert(e)})
       })
       
     }
@@ -313,7 +381,7 @@ export default class ArticlePage extends Component{
               },
               body:JSON.stringify({
                 list:global.user.Collect
-        })})
+        })}).catch(e=>{Alert.alert(e)})
          // update the articles data
         fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
         {method:"PATCH",
@@ -323,7 +391,7 @@ export default class ArticlePage extends Component{
         },
         body:JSON.stringify({
           collects:this.state.CollectNum
-        })})
+        })}).catch(e=>{Alert.alert(e)})
         // update the hash value
         fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
       {method:"PATCH",
@@ -333,7 +401,7 @@ export default class ArticlePage extends Component{
       },
       body:JSON.stringify({
         hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
-      })})
+      })}).catch(e=>{Alert.alert(e)})
       
       })
       
@@ -356,7 +424,7 @@ export default class ArticlePage extends Component{
               },
               body:JSON.stringify({
                 list:global.user.Collect
-        })})
+        })}).catch(e=>{Alert.alert(e)})
         fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
         {method:"PATCH",
         headers:{
@@ -365,7 +433,7 @@ export default class ArticlePage extends Component{
         },
         body:JSON.stringify({
           collects:this.state.CollectNum
-        })})
+        })}).catch((e)=>{alert(e)})
         fetch(`${global.server}/hash/${getId(this.props.route.params.article.type) }`,
       {method:"PATCH",
       headers:{
@@ -374,7 +442,7 @@ export default class ArticlePage extends Component{
       },
       body:JSON.stringify({
         hash_value:`${global.user.username}${(new Date()).getTime()%10000000}${Math.floor(Math.random()*10000)}`
-      })})
+      })}).catch(e=>{Alert.alert(e)})
       })
     }
   }
@@ -421,7 +489,7 @@ export default class ArticlePage extends Component{
           <CoverLayer ref={ref => this.coverLayer = ref}
             coverLayerEvent={()=>{this.coverLayer.hide()}}
             coverLayerColor="rgba(0,0,0,0.3)"
-            renderContent={()=>(<CommentList hide={()=>{this.coverLayer.hide()}} />)}
+            renderContent={()=>(<CommentList article={this.state.article} hide={()=>{this.coverLayer.hide()}} />)}
           />
       </>
         
