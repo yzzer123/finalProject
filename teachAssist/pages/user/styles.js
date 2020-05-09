@@ -2,9 +2,24 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-
+const height=Dimensions.get('window').height
 const width=Dimensions.get('window').width
 const styles = StyleSheet.create({
+    image:{ // the format of image
+        width:height/10,
+        height: height/10,
+        borderRadius:height/10,
+        margin: 2
+        // borderWidth:5,
+        // borderColor:'green'
+      },
+      item:{ // the output format of each users
+          flexDirection:'row',
+          backgroundColor:'white',
+          padding:20,
+          marginVertical:2,
+          fontSize:20
+    },
     bottomViewStyle:{
         flexDirection:'row',
         position:'absolute',
@@ -63,12 +78,14 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         backgroundColor:'white',
         alignItems:'center',
-        height:40,
-        borderBottomColor: '#e8e8e8',
+        height:60,
+        borderBottomColor: 'white',
         borderBottomWidth:0.5,
     },
-    scrollViewStyle:{
-        backgroundColor:'#e8e8e8',
+    ViewStyle:{
+        backgroundColor:'blue',
+        height:Dimensions.get('window').height,
+        width:Dimensions.get('window').width
     },
     TitleStyle:{
         flexDirection:'row',

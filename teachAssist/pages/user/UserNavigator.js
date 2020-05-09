@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component, useState} from 'react';
 import{
     Text,
     View,
@@ -6,16 +6,17 @@ import{
     TouchableOpacity,
     Vibration,
     Dimensions,
-    Alert
+    Alert,
 } from 'react-native'
-import {NavigationContainer} from '@react-navigation/native';
+import {Echarts} from 'react-native-secharts'
+import {NavigationContainer, useScrollToTop} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SIcon from 'react-native-vector-icons/SimpleLineIcons'
 import FIcon from 'react-native-vector-icons/Feather'
 import styles from './styles';
 import functions from './UserFunctions';
+import CollectScr from './CollectScr';
 const width =Dimensions.get('window').width
-
 const Set = createStackNavigator()
 const SetHome=({navigation})=>{
     return(
@@ -45,18 +46,57 @@ const SetHome=({navigation})=>{
         </View>
     )
 }
-const collect=({navigation})=>{
+const collect=({navigation,route})=>{
     return(
         <View>
-            <Text  style={{textAlign:'center'}} onPress={()=>navigation.navigate('UserHome')}>favourite</Text>
+            <CollectScr 
+                stackNavigation={route.params.stackNavigation}
+            />
         </View>
     )
 }
 
 const read_time=({navigation})=>{
+    const option={
+        title:{
+            left:'center',
+          text:'Reading time',
+          textStyle:{
+              fontSize:25,
+              
+          },
+          subtext:"分钟",
+          subtextStyle:{
+              fontSize:15,
+          }
+        },
+        tooltip:{},
+        legend:{
+          right:'right',
+          data:['time'],
+          textStyle:{
+              fontSize:'15'
+          }
+        },
+        xAxis:{
+          data:["Fri","Sec","thi","Fou","Fif","Six","Sev"]
+        },
+        yAxis:{
+          type:'value',
+          axisLabel:{
+              fontSize:'15',
+          }
+        },
+        series:[{
+          name:'time',
+          type:'line',
+          data:[10,20,35,32.20,19,1],
+          areaStyle:{}
+        }]
+      }
     return(
-        <View>
-            <Text onPress={()=>navigation.navigate('UserHome')}>read_time</Text>
+        <View style={{marginTop:50}}>
+            <Echarts option={option} height={400} />
         </View>
     )
 }

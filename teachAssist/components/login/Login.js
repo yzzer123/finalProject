@@ -64,10 +64,6 @@ export default class Login extends Component{
                     activeOpacity={0.9}>
                     <Text style={{color:'white'}}>Login</Text>
                 </TouchableOpacity>
-                <View style={styles.setting}>
-                        <Text>LOST PASSWORD</Text>
-                        <Text>NEW USER</Text>
-                </View>
             </View>
         )
     }
