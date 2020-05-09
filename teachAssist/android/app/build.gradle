@@ -149,6 +149,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release { 
+        storeFile file("my-release-key.keystore")//这里换成你自己的
+        storePassword "android"//这里换成你自己的
+        keyAlias "my-key-alias"//这里换成你自己的
+        keyPassword "android"//这里换成你自己的
+    }
     }
     buildTypes {
         debug {
@@ -160,6 +166,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

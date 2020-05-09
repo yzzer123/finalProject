@@ -75,7 +75,7 @@ const TutorialScreen = ({navigation, route})=>{
        
           StatusBar.setBackgroundColor("white")
           StatusBar.setBarStyle("dark-content")
-    
+          StatusBar.animated = true
           StatusBar.setTranslucent(true)
         return unsubscribe;
       });
@@ -90,14 +90,7 @@ const TutorialScreen = ({navigation, route})=>{
     }
    global.setHide = setBarState;
     return (
-       <>
-       <StatusBar 
-        backgroundColor={'white'} 
-        animated={true} 
-        hidden={false}
-        translucent={true}
-          barStyle="dark-content"  
-          />
+       
         <Stack.Navigator
         // initialRouteName="TabScreen"
         >
@@ -141,7 +134,7 @@ const TutorialScreen = ({navigation, route})=>{
                 }}
             />
         </Stack.Navigator>
-       </>
+       
     )
 
 }
