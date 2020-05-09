@@ -64,13 +64,13 @@ function MyTabBar({ state, descriptors, navigation, stackNavigation,position,get
                   TabIcon =()=> ( <MtIcon  name="react"  size={25} color={nowColor}/>);
                   break;
               case "Python":
-                  labelName = "Py"
-                  nowColor = '#f47920'
+                  labelName = "PY"
+                  nowColor = '#faa755'
                  TabIcon =()=>(<FofIcon name="python"  size={23} color={nowColor}/>);
                   break;
               case "MachineLearn":
                   labelName = "AI"
-                  nowColor = "#72baa7"
+                  nowColor = "#45b97c"
                   TabIcon =()=> ( <FofIcon name="brain"  size={23} color={nowColor}/>);
                   break;
               case "DataVisual":
@@ -107,7 +107,7 @@ function MyTabBar({ state, descriptors, navigation, stackNavigation,position,get
       <FofIcon 
        name="search" 
         size={20}
-         color= {global.gColor.themeColor}
+         color= "white"
          style={styles.search}
          onPress={()=>{
            global.search.searchTabPage = global.nowTab;

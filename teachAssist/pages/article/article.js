@@ -81,7 +81,7 @@ const TopBar = ({title,type="MT",leftaction,rightaction})=>{
         rightComponent={{ icon: 'refresh', color: '#fff' ,onPress:rightaction}}
         containerStyle={{height:85
         }}
-        statusBarProps={{ barStyle: 'dark-content',translucent:true,backgroundColor:"rgba(0,0,0,0)" }}
+        statusBarProps={{ barStyle: 'light-content',translucent:true,backgroundColor:"rgba(0,0,0,0)" }}
           ViewComponent={LinearGradient} // Don't forget this!
           linearGradientProps={{
           colors:LinearColors[type],
@@ -238,8 +238,7 @@ export default class ArticlePage extends Component{
      
       setTimeout(()=>{
         
-        StatusBar.setBarStyle("dark-content");
-        StatusBar.setBackgroundColor("white");
+        
         StatusBar.animated = true;
       },200)
       this.props.navigation.goBack();
@@ -250,8 +249,8 @@ export default class ArticlePage extends Component{
     componentWillUnmount(){
       this.props.route.params.setHide(true);
       StatusBar.animated = true;
-      StatusBar.setBarStyle("dark-content");
-      StatusBar.setBackgroundColor("white");
+      
+      StatusBar.animated = true;
       let getTime = new Promise((resolve,reject)=>{
         
         let obj = new Object();
@@ -458,7 +457,7 @@ export default class ArticlePage extends Component{
                   <WebView
                   scalesPageToFit={false}
                   injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-
+                  
                     ref={(web)=>{this._web = web}}
                      style={{ height:this.state.height}}     
                      containerStyle={styles.Web}
