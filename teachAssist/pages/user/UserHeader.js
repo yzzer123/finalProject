@@ -28,7 +28,7 @@ export default class UserHeader extends Component{
     }
     TopView(){
         return(
-            <View style={styles.topViewStyleView} >
+            <View style={[styles.topViewStyleView,{marginTop:35}]} >
                 <Image 
                     style={styles.leftIconStyle}
                     source={require('./image/avatar.jpg')}
@@ -54,7 +54,7 @@ export default class UserHeader extends Component{
                     var item = data[i];
                     Array.push(
                         <View key={i} style={styles.bottomInnerStyle}>
-                            <Text style={{color:'black'}}>{item.number}</Text>
+                            <Text  style={{color:'black'}}>{item.number}</Text>
                             <Text style={{color:'black'}}>{item.title}</Text>
                         </View>
                     )

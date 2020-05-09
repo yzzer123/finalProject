@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component, useState} from 'react';
 import{
     Text,
     View,
@@ -6,17 +6,17 @@ import{
     TouchableOpacity,
     Vibration,
     Dimensions,
-    Alert
+    Alert,
 } from 'react-native'
 import {Echarts} from 'react-native-secharts'
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useScrollToTop} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SIcon from 'react-native-vector-icons/SimpleLineIcons'
 import FIcon from 'react-native-vector-icons/Feather'
 import styles from './styles';
 import functions from './UserFunctions';
+import CollectScr from './CollectScr';
 const width =Dimensions.get('window').width
-
 const Set = createStackNavigator()
 const SetHome=({navigation})=>{
     return(
@@ -46,11 +46,12 @@ const SetHome=({navigation})=>{
         </View>
     )
 }
-const collect=({navigation})=>{
-    
+const collect=({navigation,route})=>{
     return(
         <View>
-            <Text  style={{textAlign:'center'}} onPress={()=>navigation.navigate('UserHome')}>favourite</Text>
+            <CollectScr 
+                stackNavigation={route.params.stackNavigation}
+            />
         </View>
     )
 }

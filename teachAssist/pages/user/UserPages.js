@@ -17,7 +17,7 @@ import UserHeader from './UserHeader'
 const UserPages = ({navigation})=>{
     const list=functions
     return (
-        <View Style={styles.ViewStyle}>
+        <View Style={styles.ViewStyle} >
                 <UserHeader/>
                 <View style={[styles.containStyle,{marginTop:3}]}>
                 <TouchableOpacity  onPress={() => navigation.navigate('Collect')} style={{width:Dimensions.get('window').width}}>

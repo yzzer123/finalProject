@@ -19,3 +19,18 @@ global.gColor = {
     unActiveColor : '#C0C0C0',
 }
 global.server = "http://yzzer.top:5074"
+
+fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
+    .then(data=>{
+        global.user = data;
+    })
+    .then(()=>{
+        fetch("http://yzzer.top:5074/favorite/1").then(rep=>rep.json())
+            .then(data=>{
+                global.user.favorite = data.list;
+            })
+            fetch("http://yzzer.top:5074/Collect/1").then(rep=>rep.json())
+            .then(data=>{
+                global.user.Collect = data.list;
+            })
+    })

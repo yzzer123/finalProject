@@ -2,9 +2,24 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-
+const height=Dimensions.get('window').height
 const width=Dimensions.get('window').width
 const styles = StyleSheet.create({
+    image:{ // the format of image
+        width:height/10,
+        height: height/10,
+        borderRadius:height/10,
+        margin: 2
+        // borderWidth:5,
+        // borderColor:'green'
+      },
+      item:{ // the output format of each users
+          flexDirection:'row',
+          backgroundColor:'white',
+          padding:20,
+          marginVertical:2,
+          fontSize:20
+    },
     bottomViewStyle:{
         flexDirection:'row',
         position:'absolute',
