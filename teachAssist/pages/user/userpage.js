@@ -23,7 +23,7 @@ const UserScreen = ({navigation})=>{
         const unsubscribe = navigation.addListener('focus', () => {
         
           StatusBar.setBackgroundColor(global.gColor.themeColor);
-          StatusBar.setTranslucent(false)
+          StatusBar.setTranslucent(true)
           StatusBar.setBarStyle("light-content");
           
         });
@@ -31,7 +31,6 @@ const UserScreen = ({navigation})=>{
         return unsubscribe;
       });
     return (
-        <>
         <User.Navigator 
             screenOptions={{
                 headerStyle:{
@@ -43,13 +42,16 @@ const UserScreen = ({navigation})=>{
                 }
             }}>
             <User.Screen name='UserHome' component={UserPages} options={{headerShown:false}}/>
-            <User.Screen name='Collect' component={collect} options={{ headerTitle: props => <CoTitle {...props} /> }}/>
+            <User.Screen name='Collect' component={collect} 
+                                        initialParams={{
+                                            stackNavigation:navigation,
+                                        }}
+                                        options={{ headerTitle: props => <CoTitle {...props} /> }}/>
             <User.Screen name ='Reading-time' component={read_time} options={{ headerTitle: props => <RedTitle {...props} /> }} /> 
             <User.Screen name ='History' component={history} options={{ headerTitle: props => <HisTitle {...props} /> }} /> 
             <User.Screen name='Setting' component={setting} options={{ headerTitle: props => <SetTitle {...props} /> }} />
             <User.Screen name ='About-us' component={about_us} options={{ headerTitle: props => <AboTitle {...props} /> }} />  
         </User.Navigator>
-        </>
     )
 
 }
