@@ -165,9 +165,9 @@ class ArticleList extends Component{
 
         })
         setTimeout(()=>{
-            // setInterval(()=>{
-            //     this.intervalFresh();
-            // },600000000)
+            setInterval(()=>{
+                this.intervalFresh();
+            },2000)
         },2000)
         // this.articleList = datalist;
         // this.virsualList=[...this.articleList];
@@ -284,8 +284,10 @@ class ArticleList extends Component{
                 .then((Response)=>Response.json())
                 .then(data=>{
                     this.articleList = data;
-                    this.virsualList = [...data];
-                    this.setState({updated:true});
+                    if(!this.state.showSearchBar){
+                        this.virsualList = [...data];
+                        this.setState({updated:true});
+                    }
                 })
                 .catch(e=>{
                 })
@@ -344,6 +346,7 @@ class ArticleList extends Component{
         return (
             <>
            <FlatList
+            showsVerticalScrollIndicator = {false}
            ListHeaderComponent={()=>(this.state.showSearchBar ? <SearchBar  keyWord={this.props.keyWord}   action={this.resetKeyWord} /> :(<></>))}
            refreshing={this.state.refreshing}
            onRefresh={this.reFresh}
