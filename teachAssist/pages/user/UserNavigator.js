@@ -27,7 +27,7 @@ const SetHome=({navigation})=>{
                     'Are you sure to log out?',
                 [
                     { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() => navigation.navigate('UserHome')}
+                    { text:'sure',onPress:() => navigation.navigate('Login')}
                 ],
                     {cancelable:true})}>
                 <Text style={{color:'black' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Sign Out</Text>
@@ -38,7 +38,7 @@ const SetHome=({navigation})=>{
                     'The action will clear all local data,go on?',
                 [
                     { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() => navigation.navigate('UserHome')}
+                    { text:'sure',onPress:() => navigation.navigate('Login')}
                 ],
                     {cancelable:true})}>
                 <Text style={{color:'red' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Clear Cache</Text>

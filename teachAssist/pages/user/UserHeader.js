@@ -46,7 +46,7 @@ export default class UserHeader extends Component{
         var Array=[]
         var num=this.state.numbers
         var data=[
-                    {'number':num[0],'title':'articles'},
+                    {'number':num[0],'title':'issues'},
                     {'number':num[1],'title':'commments'},
                     {'number':num[2],'title':'favourite'}
                 ]

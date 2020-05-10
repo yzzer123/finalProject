@@ -11,48 +11,21 @@ import  FounIcon  from 'react-native-vector-icons/Foundation';
 import IssueScreen from './pages/issue/issuepage';
 import TutorialScreen from './pages/tutorial/tutorialpage';
 import UserScreen from './pages/user/userpage';
-// Bottom Tabs
-const Tab = createBottomTabNavigator();
-
+import {createStackNavigator} from '@react-navigation/stack';
+// Bottom Tab
+import Total from './Total'
+import loginAss from './components/login/loginAss'
+const Tot = createStackNavigator()
 
 const App = () =>{
   return (
-  
     <NavigationContainer>
-      
-    <Tab.Navigator
-      
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          // different icons for each tab
-          if (focused){
-            size = 30
-          }
-          if (route.name === 'Tutorial') {
-                  
-              return <FontIcon name={"book"} size={size} color={color}/>
-            } else if (route.name === 'Issue') {
-              return <FounIcon name={"comments"} size={size} color={color}/>
-            } else if (route.name === 'User'){
-              return <FontIcon name={"user"} size={size} color={color}/>        
-          }
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: global.gColor.themeColor,
-        inactiveTintColor: '#C0C0C0',
-      }}
-      animationEnabled={true}
-      swipeEnabled={true}
-    >
-       {/* the three main screens in home screen */}
-      <Tab.Screen name="Tutorial" component={TutorialScreen}  />
-      <Tab.Screen name="Issue" component={IssueScreen} />
-      <Tab.Screen name="User" component={UserScreen} />
-    </Tab.Navigator>
-  </NavigationContainer>
- 
-  );
+      <Tot.Navigator>
+        <Tot.Screen  name='Login' component={loginAss} options={{headerShown:false}}/>
+        <Tot.Screen name='TotalScreen' component={Total} options={{headerShown:false}}/>
+      </Tot.Navigator>
+    </NavigationContainer>
+  )
 
 }
 
