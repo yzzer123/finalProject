@@ -1,7 +1,7 @@
 import {
     StyleSheet
 } from 'react-native';
-import {Input} from 'react-native-elements';
+
 export default styles = StyleSheet.create({
     container:{
         width:global.gScreen.WIDTH,
@@ -23,6 +23,7 @@ export default styles = StyleSheet.create({
         marginLeft: 20
     },
     inputContainer:{
+        
         borderTopWidth:1,
         borderColor:"#f6f5ec",
         flexDirection:'row',justifyContent:'flex-start',alignItems:'flex-start',

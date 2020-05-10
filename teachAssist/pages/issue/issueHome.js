@@ -66,6 +66,10 @@ class  IssueHome extends Component{
                 <Icon name="add" raised color="skyblue" size={15} onPress={this.addIssue} />
             )
         })
+        // this.setHide = (bool)=>{
+        //     this.props.route.params.TabNavigation.setOptions({tabBarVisible: bool});
+            
+        // }
        
     }
     componentDidMount(){
@@ -105,47 +109,58 @@ class  IssueHome extends Component{
             })
         })
     }
-    enterArticle = ()=>{
-        this.props.navigation.navigate("detail")
+    enterArticle = (index)=>{
+        this.props.navigation.navigate("detail",{article:
+            this.state.issueList[index]
+            
+        })
 
 
     }
     submitIssue = (imgLinks, content)=>{
-        fetch(`${global.server}/issue`,{
-            method:"POST",
-            headers:{
-                'Accept': 'application/json',
-                "Content-Type": "application/json;charset=utf-8"
-            },
-            body:JSON.stringify({
-                content:content,
-                img:imgLinks,
-                avatar:global.user.usericon_url,
-                time:`${(new Date()).getFullYear()}-${(new Date()).getMonth()+1}-${(new Date()).getDate()} ${(new Date()).toLocaleTimeString()}`,
-                username:global.user.username
-            })
-        }).then(rep=>{
+        let p = new Promise((resolve,reject)=>{
+            var timer = new Date()
+            return resolve(timer);
             
-            this.Fresh();
-            setTimeout(()=>{
-                this.coverLayer.hide();
-            },200)
-            
-        }).catch(e=>{
-            Alert.alert("好像没有网了")
-            this.setState({freshing: false});
         })
-        fetch(`${global.server}/users/${global.user.id}`,{
-            method:"PATCH",
-            headers:{
-                'Accept': 'application/json',
-                "Content-Type": "application/json;charset=utf-8"
-            },
-            body:JSON.stringify({
-                issues:++global.user.issues
+        p.then((timer)=>{
+            
+            fetch(`${global.server}/issue`,{
+                method:"POST",
+                headers:{
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json;charset=utf-8"
+                },
+                body:JSON.stringify({
+                    content:content,
+                    img:imgLinks,
+                    avatar:global.user.usericon_url,
+                    time:`${timer.getFullYear()}-${timer.getMonth()+1 > 9? timer.getMonth()+1:`0${timer.getMonth()+1}` }-${timer.getDate()+1 > 9? timer.getDate():`0${timer.getDate()}`} ${timer.toLocaleTimeString()}`,
+                    username:global.user.username
+                })
+            }).then(rep=>{
+                
+                this.Fresh();
+                setTimeout(()=>{
+                    this.coverLayer.hide();
+                },200)
+                
+            }).catch(e=>{
+                Alert.alert("好像没有网了")
+                this.setState({freshing: false});
             })
         })
-    }
+            fetch(`${global.server}/users/${global.user.id}`,{
+                method:"PATCH",
+                headers:{
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json;charset=utf-8"
+                },
+                body:JSON.stringify({
+                    issues:++global.user.issues
+                })
+            })
+        }
     render(){
         return (
             <View style={{backgroundColor:'white'}}>
@@ -163,7 +178,7 @@ class  IssueHome extends Component{
                     onPress={()=>{
                         setTimeout(()=>{
 
-                            this.enterArticle();
+                            this.enterArticle(index);
                         },100)
                     }}
                     friction={90} //
