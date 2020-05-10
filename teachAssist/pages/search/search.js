@@ -2,6 +2,7 @@ import React,{PureComponent} from 'react'
 import {
     View,
     ScrollView,
+    StatusBar,
     Text
 } from 'react-native';
 import styles from './style';
@@ -59,18 +60,31 @@ class SearchPage extends PureComponent{
         
         global.search.keyWord = text;
         setTimeout(()=>{
+            StatusBar.animated = true
+
+            StatusBar.setBackgroundColor("skyblue")
+            StatusBar.setBarStyle("light-content")
             this.props.navigation.goBack();
         },100)
        
     }
     componentDidMount(){
+        setTimeout(()=>{
+            StatusBar.animated = true
+            StatusBar.setBackgroundColor("white")
+            StatusBar.setBarStyle("dark-content")
+         
 
-        
+        },200)
         this.getHistory()
         this.setHide(false);
     }
     componentWillUnmount(){
          // insert into the history
+         StatusBar.setBackgroundColor("skyblue")
+         StatusBar.animated = true
+        StatusBar.setBarStyle("light-content")
+        this.setHide(this.getBarState);
         if(this.state.submitted && this.state.text !== ""){ 
             let isInsert = true;
             for(let i = 0; i< this.state.history.length; i++){
@@ -90,7 +104,7 @@ class SearchPage extends PureComponent{
             }
         }
         // update the bottom bar state
-        this.setHide(this.getBarState);
+        
         // store the change
         this.setHistory()
     }

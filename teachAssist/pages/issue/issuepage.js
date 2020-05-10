@@ -25,6 +25,7 @@ const IssueScreen = ({navigation})=>{
         <Stack.Navigator>
             <Stack.Screen name="home" component={Home}
             options={{
+                
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 headerStyle:{
                     backgroundColor: "skyblue",
@@ -35,10 +36,24 @@ const IssueScreen = ({navigation})=>{
                     },
                 headerTitleAlign:"center"
             }}
+            initialParams={{
+                TabNavigation:navigation
+            }}
             />
             <Stack.Screen name="detail" component={Detail} 
               options={{
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                headerStyle:{
+                    backgroundColor: "skyblue",
+                },
+                title: "issue detail",
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    },
+                headerTitleAlign:"center"
+            }}
+            initialParams={{
+                TabNavigation:navigation
             }}
             />
         </Stack.Navigator>

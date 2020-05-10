@@ -8,17 +8,7 @@ import{
 import {ListItem,Icon,Input} from 'react-native-elements';
 import styles from './style';
 
-const comment = {
-    avartar: "http://imgsrc.baidu.com/forum/w=580/sign=a9714efaaf86c91708035231f93c70c6/ddd3ab59d109b3dea0394e6ac4bf6c81810a4c48.jpg",
-    user: "yzzer",
-    comment: "这是一个测试评论".repeat(10)
-}
-const comment2 = {
-    avartar: "http://imgsrc.baidu.com/forum/w=580/sign=a9714efaaf86c91708035231f93c70c6/ddd3ab59d109b3dea0394e6ac4bf6c81810a4c48.jpg",
-    user: "yzzer",
-    comment: "这是一个测试评论".repeat(15)
 
-}
 const getId = (type)=>{
     switch(type){
       case "MT":
@@ -32,19 +22,19 @@ const getId = (type)=>{
                   
     }
   }
-const user = {
-    avartar: "http://b-ssl.duitang.com/uploads/item/201703/31/20170331090953_zUcaS.jpeg",
-    name: "pupu",
-}
-const comments = [];
-for(let i=0;i<5;i++){
-    if(i%2)
-    comments.push(comment);
-    else{
-        comments.push(comment2);
+// const user = {
+//     avartar: "http://b-ssl.duitang.com/uploads/item/201703/31/20170331090953_zUcaS.jpeg",
+//     name: "pupu",
+// }
+// const comments = [];
+// for(let i=0;i<5;i++){
+//     if(i%2)
+//     comments.push(comment);
+//     else{
+//         comments.push(comment2);
         
-    }
-}
+//     }
+// }
 
 const Header = ({action})=>{
     return (
@@ -199,7 +189,6 @@ export default class extends Component{
                     returnKeyType="send"
                     containerStyle={styles.inputContainer}
                     rightIcon={{ name: 'send',color:global.gColor.themeColor,onPress:this.submit }}
-                    style={[styles.input,]}
                     value={this.state.text}
                     onChangeText={(text)=>{this.setState({text:text})}}
                     onSubmitEditing={(event)=>{this.submit()}}
