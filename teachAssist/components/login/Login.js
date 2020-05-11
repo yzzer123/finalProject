@@ -13,7 +13,9 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles';
-
+const _savedata=async()=>{
+    AsyncStorage.setItem(global.login,'True')
+}
 class Login extends Component{
     constructor(props){
         super(props);
@@ -21,19 +23,22 @@ class Login extends Component{
             UserName:'',
             PassWord:''
         }
-        this.stackNavigation=props.stackNavigation
     }
     User={
         UserName:'Dzp',
         PassWord:'12345'
     }
-    Jump(){
+    _reqdata2=async(setStatus)=>{
+        let value= await AsyncStorage.getItem(global.login)
+        this.props.Set[1](value)
         
-    }
+      }
     Judge(){
         if(this.state.UserName==this.User.UserName&&this.state.PassWord==this.User.PassWord){
+            AsyncStorage.setItem(global.login,'True')
             ToastAndroid.show(`${this.state.UserName},${this.state.PassWord}`,ToastAndroid.SHORT)
-            this.props.stackNavigation.navigate('TotalScreen')
+            this._reqdata2()
+            console.log(this.props.Set[0])
         }
         else
             ToastAndroid.show(`Login failed`,ToastAndroid.SHORT)
