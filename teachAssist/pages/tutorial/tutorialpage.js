@@ -73,8 +73,8 @@ const TutorialScreen = ({navigation, route})=>{
     useEffect(() => {  // when focus
         const unsubscribe = navigation.addListener('focus', () => {
        
-          StatusBar.setBackgroundColor("white")
-          StatusBar.setBarStyle("dark-content")
+          StatusBar.setBackgroundColor("skyblue")
+          StatusBar.setBarStyle("light-content")
           StatusBar.animated = true
           StatusBar.setTranslucent(true)
         return unsubscribe;

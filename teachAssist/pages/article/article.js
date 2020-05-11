@@ -9,6 +9,7 @@ import {
     Alert,
     AppState
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import CommentList from '../../components/commentlist/commentList';
 import styles from './style';
 import CoverLayer from '../../components/bottomLayer/bottomLayer';
@@ -81,7 +82,7 @@ const TopBar = ({title,type="MT",leftaction,rightaction})=>{
         rightComponent={{ icon: 'refresh', color: '#fff' ,onPress:rightaction}}
         containerStyle={{height:85
         }}
-        statusBarProps={{ barStyle: 'dark-content',translucent:true,backgroundColor:"rgba(0,0,0,0)" }}
+        statusBarProps={{ barStyle: 'light-content',translucent:true,backgroundColor:"rgba(0,0,0,0)" }}
           ViewComponent={LinearGradient} // Don't forget this!
           linearGradientProps={{
           colors:LinearColors[type],
@@ -126,10 +127,35 @@ export default class ArticlePage extends Component{
             article:this.props.route.params.article,
             enterPageTime:0,
             preActiveTime:0,
-
+            history:[],
         }
        this.type = this.props.route.params.type;
        this.isActive = true;
+      
+    }
+    getHistory = async ()=>{
+      try{
+        let  history =  await AsyncStorage.getItem('History');
+        // console.log(history)
+        if(history){
+        // let history = null;
+          history = JSON.parse(history);
+          history.push(this.state.article.id);
+          this.state.history = history;
+        }
+
+      }catch(e){
+
+      }
+      
+    }
+    setHistory = async ()=>{
+        try{
+            await this.getHistory();
+            AsyncStorage.setItem('History',JSON.stringify(this.state.history)) 
+        }catch(e){
+
+        }
     }
     setHeight=(height)=>{
       // console.log("done")
@@ -189,6 +215,7 @@ export default class ArticlePage extends Component{
     }
     componentDidMount(){
         this.setState({enterPageTime:(new Date()).getTime()})
+        
         AppState.addEventListener('change',this._handleAppStateChange);
         fetch(`${global.server}/articles/${this.props.route.params.article.id}`,
             {method:"PATCH",
@@ -228,18 +255,17 @@ export default class ArticlePage extends Component{
           
         },200)
         // console.log(this.state.article.backgroundImageUri)
-     
+        
         this._web.reload()
         
-
+        this.setHistory();
     }
    
     goBack = ()=>{
      
       setTimeout(()=>{
         
-        StatusBar.setBarStyle("dark-content");
-        StatusBar.setBackgroundColor("white");
+        
         StatusBar.animated = true;
       },200)
       this.props.navigation.goBack();
@@ -250,8 +276,8 @@ export default class ArticlePage extends Component{
     componentWillUnmount(){
       this.props.route.params.setHide(true);
       StatusBar.animated = true;
-      StatusBar.setBarStyle("dark-content");
-      StatusBar.setBackgroundColor("white");
+      
+      StatusBar.animated = true;
       let getTime = new Promise((resolve,reject)=>{
         
         let obj = new Object();
@@ -458,7 +484,7 @@ export default class ArticlePage extends Component{
                   <WebView
                   scalesPageToFit={false}
                   injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-
+                  
                     ref={(web)=>{this._web = web}}
                      style={{ height:this.state.height}}     
                      containerStyle={styles.Web}

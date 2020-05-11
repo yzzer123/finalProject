@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     TopBarContainer:{  // the whole tab style
         flexDirection: 'row',
         justifyContent:'center',
-        backgroundColor:"white",
-        height:80, 
+        backgroundColor:"skyblue",
+        height:87, 
         alignItems: 'flex-end',
     },
     LabBarText:{ // label text
