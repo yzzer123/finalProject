@@ -11,6 +11,7 @@ global.gScreen = {
     WIDTH: Dimensions.get('window').width,
     HEIGHT: Dimensions.get('window').height
 }
+global.login='status'
 global.nowTab = "";
 global.StatusBar = "";
 global.setHide = "";

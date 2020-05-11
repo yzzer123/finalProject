@@ -16,6 +16,7 @@ import FIcon from 'react-native-vector-icons/Feather'
 import styles from './styles';
 import functions from './UserFunctions';
 import CollectScr from './CollectScr';
+import AsyncStorage from '@react-native-community/async-storage';
 const width =Dimensions.get('window').width
 const Set = createStackNavigator()
 const SetHome=({navigation})=>{
@@ -27,7 +28,7 @@ const SetHome=({navigation})=>{
                     'Are you sure to log out?',
                 [
                     { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() => navigation.navigate('UserHome')}
+                    { text:'sure',onPress:() =>{AsyncStorage.setItem(global.login.key,"False")}}
                 ],
                     {cancelable:true})}>
                 <Text style={{color:'black' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Sign Out</Text>
@@ -38,7 +39,7 @@ const SetHome=({navigation})=>{
                     'The action will clear all local data,go on?',
                 [
                     { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() => navigation.navigate('UserHome')}
+                    { text:'sure',onPress:() => {}}
                 ],
                     {cancelable:true})}>
                 <Text style={{color:'red' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Clear Cache</Text>
