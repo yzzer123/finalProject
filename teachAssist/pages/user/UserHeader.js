@@ -11,12 +11,39 @@ import {
 import styles from './styles'
 const width=Dimensions.get('window').width
 export default class UserHeader extends Component{
-    constructor(Props){
-        super(Props)
+    constructor(props){
+        super(props);
         this.state={
-            name:'Dzper',
-            numbers:['133','33','133']
+            issues:'',
+            comments:'',
+            favorite:''
         }
+        setInterval(() => {
+            fetch("http://yzzer.top:5074/users/1")
+            .then(rep=>rep.json())
+            .then(data=>{this.setState({issues:data.issues,comments:data.comments})})
+            .then(()=>{
+                fetch("http://yzzer.top:5074/favorite/1")
+                .then(rep=>rep.json())
+                .then(data=>{
+                    this.setState({favorite:data.list.length})
+                })
+            })
+        },240);
+    }
+
+    componentDidMount(){
+        fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
+        .then(data=>{
+            this.setState({issues:data.issues,comments:data.comments})
+        })
+        .then(()=>{
+            fetch("http://yzzer.top:5074/favorite/1").then(rep=>rep.json())
+            .then(data=>{
+                this.setState({favorite:data.list.length})
+            })
+        }
+        )
     }
     render(){
         return(
@@ -35,7 +62,7 @@ export default class UserHeader extends Component{
                 />
                 <View style={styles.centerViewStyle}>
                     <Text style={{fontSize:20,color:'white',fontWeight:'bold'}}>
-                        {this.state.name}
+                        {global.user.username}
                     </Text>
 
                 </View>
@@ -44,7 +71,7 @@ export default class UserHeader extends Component{
     }
     BottomItem(){
         var Array=[]
-        var num=this.state.numbers
+        var num=[this.state.issues,this.state.comments,this.state.favorite]
         var data=[
                     {'number':num[0],'title':'issues'},
                     {'number':num[1],'title':'commments'},

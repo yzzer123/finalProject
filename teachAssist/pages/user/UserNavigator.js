@@ -7,6 +7,7 @@ import{
     Vibration,
     Dimensions,
     Alert,
+    DeviceEventEmitter
 } from 'react-native'
 import {Echarts} from 'react-native-secharts'
 import {NavigationContainer, useScrollToTop} from '@react-navigation/native';
@@ -17,8 +18,26 @@ import styles from './styles';
 import functions from './UserFunctions';
 import CollectScr from './CollectScr';
 import AsyncStorage from '@react-native-community/async-storage';
+import HistoryShow from './HistoryShow'
+import ReadChart from './ReadChart'
+
 const width =Dimensions.get('window').width
 const Set = createStackNavigator()
+var list=[]
+
+const GetHistory = async ()=>{
+    try{
+      let  history =  await AsyncStorage.getItem('History');
+      if(history){
+        history = JSON.parse(history);
+        list=history
+      }
+
+    }catch(e){
+
+    }
+    
+}
 const SetHome=({navigation})=>{
     return(
         <View>
@@ -28,21 +47,10 @@ const SetHome=({navigation})=>{
                     'Are you sure to log out?',
                 [
                     { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() =>{AsyncStorage.setItem(global.login.key,"False")}}
+                    { text:'sure',onPress:() =>{DeviceEventEmitter.emit('change','修改')}}
                 ],
                     {cancelable:true})}>
                 <Text style={{color:'black' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Sign Out</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{marginTop:10}} onPress={()=>
-                Alert.alert(
-                    'CLEAR CACHE',
-                    'The action will clear all local data,go on?',
-                [
-                    { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() => {}}
-                ],
-                    {cancelable:true})}>
-                <Text style={{color:'red' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Clear Cache</Text>
             </TouchableOpacity>
         </View>
     )
@@ -80,7 +88,10 @@ const read_time=({navigation})=>{
           }
         },
         xAxis:{
-          data:["Fri","Sec","thi","Fou","Fif","Six","Sev"]
+          data:global.Readtime,
+          axisLabel:{
+            fontSize:'15',
+        }
         },
         yAxis:{
           type:'value',
@@ -91,21 +102,21 @@ const read_time=({navigation})=>{
         series:[{
           name:'time',
           type:'line',
-          data:[10,20,35,32.20,19,1],
+          data:global.ReadTime,
           areaStyle:{}
         }]
       }
     return(
-        <View style={{marginTop:50}}>
-            <Echarts option={option} height={400} />
-        </View>
+        <ReadChart />
     )
 }
 
-const history=({navigation})=>{
+const history=({navigation,route})=>{
+    GetHistory()
+    //console.log(list)
     return(
         <View>
-            <Text onPress={()=>navigation.navigate('UserHome')}>history</Text>
+            <HistoryShow stackNavigation={route.params.stackNavigation} HisList={list}/>
         </View>
     )
 }

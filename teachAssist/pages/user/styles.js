@@ -97,7 +97,15 @@ const styles = StyleSheet.create({
         height:30,
         marginLeft:63,
         borderRadius:12
-    }
+    },
+
+    findnoneText:{
+        fontSize: 18,
+        textAlign:'center',
+        textAlignVertical:'center',
+        marginTop: 20,
+        color: 'skyblue'
+    },
 });
 
 export default styles;

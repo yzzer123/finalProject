@@ -48,7 +48,11 @@ const UserScreen = ({navigation})=>{
                                         }}
                                         options={{ headerTitle: props => <CoTitle {...props} /> }}/>
             <User.Screen name ='Reading-time' component={read_time} options={{ headerTitle: props => <RedTitle {...props} /> }} /> 
-            <User.Screen name ='History' component={history} options={{ headerTitle: props => <HisTitle {...props} /> }} /> 
+            <User.Screen name ='History' component={history}
+                                                        initialParams={{
+                                                            stackNavigation:navigation,
+                                                        }}
+            options={{ headerTitle: props => <HisTitle {...props} /> }} /> 
             <User.Screen name='Setting' component={setting} options={{ headerTitle: props => <SetTitle {...props} /> }} />
             <User.Screen name ='About-us' component={about_us} options={{ headerTitle: props => <AboTitle {...props} /> }} />  
         </User.Navigator>
