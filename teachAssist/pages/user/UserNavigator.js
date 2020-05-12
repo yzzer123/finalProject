@@ -112,11 +112,11 @@ const read_time=({navigation})=>{
 }
 
 const history=({navigation,route})=>{
-    GetHistory()
+    // GetHistory()
     //console.log(list)
     return(
         <View>
-            <HistoryShow stackNavigation={route.params.stackNavigation} HisList={list}/>
+            <HistoryShow stackNavigation={route.params.stackNavigation}/>
         </View>
     )
 }

@@ -37,7 +37,6 @@ export default class App extends Component{
   componentWillMount(){
     AsyncStorage.getItem("Logaa")
     .then((value)=>{
-      console.log(value);
       if(value!==null){
         this.setState({loginaccount:value});
       }
@@ -48,7 +47,6 @@ export default class App extends Component{
 
     AsyncStorage.getItem("pasaa")
             .then((value) => {
-              console.log(value);
       if (value !== null){
 
               this.setState({password1:value});
@@ -61,8 +59,8 @@ export default class App extends Component{
     
   }
   User={
-    UserName:'Dzp',
-    PassWord:'12345'
+    UserName:global.user.username,
+    PassWord:global.user.password
 }
 componentWillUnmount(){
    this.msgListener.remove();
@@ -122,8 +120,8 @@ login(){
       return(
         <View style={styles.container}>
         <Image source={require('./components/login/image/avatar.jpg')} style={styles.image} />
-        <TextInput 
-            placeholder={'User'} 
+        <TextInput
+            placeholder={`User:${this.User.UserName}`} 
             style={styles.textinput}
             onChangeText = {(UserName)=> this.setState({UserName})}
         />
