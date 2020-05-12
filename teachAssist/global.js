@@ -44,3 +44,18 @@ fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
             })
 
     })
+
+
+
+    global.ReadTime=[]
+    global.Readtime=[]
+        fetch("http://yzzer.top:5074/readTime/1")
+        .then(rep=>rep.json())
+        .then(data=>{
+          for(let i in data)
+            if(i!=="id")
+            {
+              global.Readtime.push(i)
+              global.ReadTime.push(data[i]/60)
+            }
+        })

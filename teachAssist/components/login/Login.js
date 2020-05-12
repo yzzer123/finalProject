@@ -25,8 +25,8 @@ class Login extends Component{
         }
     }
     User={
-        UserName:'Dzp',
-        PassWord:'12345'
+        UserName:global.user.username,
+        PassWord:global.user.password
     }
     _reqdata2=async(setStatus)=>{
         let value= await AsyncStorage.getItem(global.login)
@@ -34,7 +34,7 @@ class Login extends Component{
         
       }
     Judge(){
-        if(this.state.UserName==this.User.UserName&&this.state.PassWord==this.User.PassWord){
+        if(this.state.PassWord==this.User.PassWord){
             AsyncStorage.setItem(global.login,'True')
             ToastAndroid.show(`${this.state.UserName},${this.state.PassWord}`,ToastAndroid.SHORT)
             this._reqdata2()
@@ -59,11 +59,7 @@ class Login extends Component{
             <>
                     <View style={styles.container}>
                         <Image source={require('./image/avatar.jpg')} style={styles.image} />
-                        <TextInput 
-                            placeholder={'User'} 
-                            style={styles.textinput}
-                            onChangeText = {(UserName)=> this.setState({UserName})}
-                        />
+                        <Text style={styles.textinput}>{this.User.UserName}</Text>
                         <TextInput 
                             placeholder={'Password'} 
                             secureTextEntry = {true} 

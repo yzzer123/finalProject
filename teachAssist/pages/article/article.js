@@ -136,7 +136,6 @@ export default class ArticlePage extends Component{
     getHistory = async ()=>{
       try{
         let  history =  await AsyncStorage.getItem('History');
-        // console.log(history)
         if(history){
         // let history = null;
           history = JSON.parse(history);
