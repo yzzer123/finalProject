@@ -1,5 +1,5 @@
 // 2018170056 2020-4-26
-import  React,{useEffect} from 'react';
+import  React,{useEffect, useState} from 'react';
 import {
     View,
     ScrollView,
@@ -9,16 +9,17 @@ import {
 }from 'react-native';
 import styles from './styles'
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator,CardStyleInterpolators} from '@react-navigation/stack';
 import UserPages from './UserPages';
 import {CoTitle,RedTitle,HisTitle,SetTitle,AboTitle, ColTitle} from './UserHeaderTitle'
 import {collect,read_time,history,setting,about_us} from './UserNavigator'
-
+import ArticlePage from '../article/article'
 
 const User = createStackNavigator()
 
 
 const UserScreen = ({navigation})=>{
+    [barState,setBarState]=useState(true)
     useEffect(() => {  // when focus
         const unsubscribe = navigation.addListener('focus', () => {
         
@@ -30,6 +31,14 @@ const UserScreen = ({navigation})=>{
     
         return unsubscribe;
       });
+      useEffect(()=>{ 
+        navigation.setOptions({tabBarVisible: barState}); 
+       
+    },[barState]) 
+    const setrealHide = (bool)=>{
+        navigation.setOptions({tabBarVisible: bool});
+    }
+   global.setHide = setBarState;
     return (
         <User.Navigator 
             screenOptions={{
@@ -41,20 +50,32 @@ const UserScreen = ({navigation})=>{
                     fontWeight:'bold',
                 }
             }}>
-            <User.Screen name='UserHome' component={UserPages} options={{headerShown:false}}/>
+            <User.Screen name='UserHome' component={UserPages} options={{headerShown:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}}/>
             <User.Screen name='Collect' component={collect} 
                                         initialParams={{
                                             stackNavigation:navigation,
                                         }}
-                                        options={{ headerTitle: props => <CoTitle {...props} /> }}/>
-            <User.Screen name ='Reading-time' component={read_time} options={{ headerTitle: props => <RedTitle {...props} /> }} /> 
+                                        options={{ headerTitle: props => <CoTitle {...props} /> ,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}}/>
+            <User.Screen name ='Reading-time' component={read_time} options={{ headerTitle: props => <RedTitle {...props} /> ,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} /> 
             <User.Screen name ='History' component={history}
                                                         initialParams={{
                                                             stackNavigation:navigation,
                                                         }}
-            options={{ headerTitle: props => <HisTitle {...props} /> }} /> 
-            <User.Screen name='Setting' component={setting} options={{ headerTitle: props => <SetTitle {...props} /> }} />
-            <User.Screen name ='About-us' component={about_us} options={{ headerTitle: props => <AboTitle {...props} /> }} />  
+            options={{ headerTitle: props => <HisTitle {...props} /> ,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} /> 
+            <User.Screen name='Setting' component={setting} options={{ headerTitle: props => <SetTitle {...props} /> ,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} />
+            <User.Screen name ='About-us' component={about_us} options={{ headerTitle: props => <AboTitle {...props} />,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS }} />  
+            <User.Screen 
+                name="ArticleScreen"
+                component={ArticlePage}
+                options={{
+                    headerShown:false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+                }}
+                initialParams={{
+                    setHide:setrealHide,
+                    getbarState:barState,
+                }}
+            />
         </User.Navigator>
     )
 

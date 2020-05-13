@@ -11,7 +11,6 @@ global.gScreen = {
     WIDTH: Dimensions.get('window').width,
     HEIGHT: Dimensions.get('window').height
 }
-global.login='status'
 global.nowTab = "";
 global.StatusBar = "";
 global.setHide = "";
@@ -20,7 +19,19 @@ global.gColor = {
     unActiveColor : '#C0C0C0',
 }
 global.server = "http://yzzer.top:5074"
-fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
+global.user=[]
+global.usernames=[]
+global.password=[]
+
+fetch('http://yzzer.top:5074/users')
+    .then(response=>response.json())
+    .then(data=>{
+      for(let i in data){
+        global.usernames.push(data[i].username)
+        global.password.push(data[i].password)
+      }
+    })
+/* fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
     .then(data=>{
         global.user = data;
     })
@@ -43,7 +54,7 @@ fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
                 
             })
 
-    })
+    }) */
 
 
 

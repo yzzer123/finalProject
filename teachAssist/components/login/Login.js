@@ -58,7 +58,7 @@ class Login extends Component{
 
             <>
                     <View style={styles.container}>
-                        <Image source={require('./image/avatar.jpg')} style={styles.image} />
+                        <Image source={require('./image/Learning.png')} style={styles.image} />
                         <Text style={styles.textinput}>{this.User.UserName}</Text>
                         <TextInput 
                             placeholder={'Password'} 

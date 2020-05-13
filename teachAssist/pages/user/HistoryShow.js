@@ -24,6 +24,7 @@ class HistoryShow extends Component{
         if(item.title!==undefined)
             return(
                 <View>
+                    
                         <View style={styles.item}>
                         <Image style={styles.image} source={{uri:item.backgroundImageUri}} />
                             <Text style={styles.item}>{item.title}</Text>
@@ -35,12 +36,13 @@ class HistoryShow extends Component{
         AsyncStorage.getItem("History")
         .then((value)=>{
         if(value!==null){
+            
         this.setState({HisList:value});
         }
     })
     .then(()=>{
         for(let i=0;i<this.state.HisList.length;i++){
-            fetch(`http://yzzer.top:5074/articles/${this.state.HisList[i]}`)
+            fetch(`http://yzzer.top:5074/articles/${this.state.HisList[this.state.HisList.length-i-1]}`)
             .then((repsonse)=>repsonse.json())
             .then((data)=>{
                 this.setState({HisArt:this.state.HisArt.concat(data)})

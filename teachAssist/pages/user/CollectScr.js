@@ -32,7 +32,7 @@ class CollectScr extends Component{
     ReturnItem(item){
         return(
             <View>
-                <TouchableOpacity onPress={()=>{this.props.stackNavigation.navigate("ArticleScreen",{type:item.type, article:item})}} style={{width:Dimensions.get('window').width}}>
+                <TouchableOpacity onPress={()=>{this.props.navigation.navigate("ArticleScreen",{type:item.type, article:item})}} style={{width:Dimensions.get('window').width}}>
                     <View style={styles.item}>
                  
                        <Image style={styles.image} source={{uri:item.backgroundImageUri}} />
