@@ -19,26 +19,26 @@ export default class UserHeader extends Component{
             favorite:''
         }
         setInterval(() => {
-            fetch("http://yzzer.top:5074/users/1")
+            fetch(`http://yzzer.top:5074/users/${global.user.id}`)
             .then(rep=>rep.json())
             .then(data=>{this.setState({issues:data.issues,comments:data.comments})})
             .then(()=>{
-                fetch("http://yzzer.top:5074/favorite/1")
+                fetch(`http://yzzer.top:5074/favorite/${global.user.id}`)
                 .then(rep=>rep.json())
                 .then(data=>{
                     this.setState({favorite:data.list.length})
                 })
             })
-        },240);
+        },150);
     }
 
     componentDidMount(){
-        fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
+        fetch(`http://yzzer.top:5074/users/${global.user.id}`).then(rep=>rep.json())
         .then(data=>{
             this.setState({issues:data.issues,comments:data.comments})
         })
         .then(()=>{
-            fetch("http://yzzer.top:5074/favorite/1").then(rep=>rep.json())
+            fetch(`http://yzzer.top:5074/favorite/${global.user.id}`).then(rep=>rep.json())
             .then(data=>{
                 this.setState({favorite:data.list.length})
             })
@@ -58,7 +58,7 @@ export default class UserHeader extends Component{
             <View style={[styles.topViewStyleView,{marginTop:35}]} >
                 <Image 
                     style={styles.leftIconStyle}
-                    source={require('./image/avatar.jpg')}
+                    source={{uri:global.user.usericon_url}}
                 />
                 <View style={styles.centerViewStyle}>
                     <Text style={{fontSize:20,color:'white',fontWeight:'bold'}}>

@@ -14,7 +14,7 @@ class ReadChart extends Component{
     componentDidMount(){
         var listtime=[]
         var listvalue=[]
-        fetch("http://yzzer.top:5074/readTime/1")
+        fetch(`http://yzzer.top:5074/readTime/${global.user.id}`)
         .then(rep=>rep.json())
         .then(data=>{
           for(let i in data)

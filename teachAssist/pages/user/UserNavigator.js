@@ -25,19 +25,6 @@ const width =Dimensions.get('window').width
 const Set = createStackNavigator()
 var list=[]
 
-const GetHistory = async ()=>{
-    try{
-      let  history =  await AsyncStorage.getItem('History');
-      if(history){
-        history = JSON.parse(history);
-        list=history
-      }
-
-    }catch(e){
-
-    }
-    
-}
 const SetHome=({navigation})=>{
     return(
         <View>
@@ -47,7 +34,8 @@ const SetHome=({navigation})=>{
                     'Are you sure to log out?',
                 [
                     { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() =>{DeviceEventEmitter.emit('change','修改')}}
+                    { text:'sure',onPress:() =>{DeviceEventEmitter.emit('change','修改')
+                                                AsyncStorage.removeItem("LoginStatus")                            }}
                 ],
                     {cancelable:true})}>
                 <Text style={{color:'black' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Sign Out</Text>
@@ -60,52 +48,13 @@ const collect=({navigation,route})=>{
         <View>
             <CollectScr 
                 stackNavigation={route.params.stackNavigation}
+                navigation={navigation}
             />
         </View>
     )
 }
 
 const read_time=({navigation})=>{
-    const option={
-        title:{
-            left:'center',
-          text:'Reading time',
-          textStyle:{
-              fontSize:25,
-              
-          },
-          subtext:"分钟",
-          subtextStyle:{
-              fontSize:15,
-          }
-        },
-        tooltip:{},
-        legend:{
-          right:'right',
-          data:['time'],
-          textStyle:{
-              fontSize:'15'
-          }
-        },
-        xAxis:{
-          data:global.Readtime,
-          axisLabel:{
-            fontSize:'15',
-        }
-        },
-        yAxis:{
-          type:'value',
-          axisLabel:{
-              fontSize:'15',
-          }
-        },
-        series:[{
-          name:'time',
-          type:'line',
-          data:global.ReadTime,
-          areaStyle:{}
-        }]
-      }
     return(
         <ReadChart />
     )
