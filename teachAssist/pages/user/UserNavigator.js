@@ -7,6 +7,7 @@ import{
     Vibration,
     Dimensions,
     Alert,
+    DeviceEventEmitter
 } from 'react-native'
 import {Echarts} from 'react-native-secharts'
 import {NavigationContainer, useScrollToTop} from '@react-navigation/native';
@@ -16,8 +17,14 @@ import FIcon from 'react-native-vector-icons/Feather'
 import styles from './styles';
 import functions from './UserFunctions';
 import CollectScr from './CollectScr';
+import AsyncStorage from '@react-native-community/async-storage';
+import HistoryShow from './HistoryShow'
+import ReadChart from './ReadChart'
+
 const width =Dimensions.get('window').width
 const Set = createStackNavigator()
+var list=[]
+
 const SetHome=({navigation})=>{
     return(
         <View>
@@ -27,21 +34,11 @@ const SetHome=({navigation})=>{
                     'Are you sure to log out?',
                 [
                     { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() => navigation.navigate('UserHome')}
+                    { text:'sure',onPress:() =>{DeviceEventEmitter.emit('change','修改')
+                                                AsyncStorage.removeItem("LoginStatus")                            }}
                 ],
                     {cancelable:true})}>
                 <Text style={{color:'black' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Sign Out</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{marginTop:10}} onPress={()=>
-                Alert.alert(
-                    'CLEAR CACHE',
-                    'The action will clear all local data,go on?',
-                [
-                    { text:'cancel',onPress:()=>{}},
-                    { text:'sure',onPress:() => navigation.navigate('UserHome')}
-                ],
-                    {cancelable:true})}>
-                <Text style={{color:'red' ,backgroundColor:'white',width:width,fontSize:20,textAlign:'center'}}>Clear Cache</Text>
             </TouchableOpacity>
         </View>
     )
@@ -51,60 +48,24 @@ const collect=({navigation,route})=>{
         <View>
             <CollectScr 
                 stackNavigation={route.params.stackNavigation}
+                navigation={navigation}
             />
         </View>
     )
 }
 
 const read_time=({navigation})=>{
-    const option={
-        title:{
-            left:'center',
-          text:'Reading time',
-          textStyle:{
-              fontSize:25,
-              
-          },
-          subtext:"分钟",
-          subtextStyle:{
-              fontSize:15,
-          }
-        },
-        tooltip:{},
-        legend:{
-          right:'right',
-          data:['time'],
-          textStyle:{
-              fontSize:'15'
-          }
-        },
-        xAxis:{
-          data:["Fri","Sec","thi","Fou","Fif","Six","Sev"]
-        },
-        yAxis:{
-          type:'value',
-          axisLabel:{
-              fontSize:'15',
-          }
-        },
-        series:[{
-          name:'time',
-          type:'line',
-          data:[10,20,35,32.20,19,1],
-          areaStyle:{}
-        }]
-      }
     return(
-        <View style={{marginTop:50}}>
-            <Echarts option={option} height={400} />
-        </View>
+        <ReadChart />
     )
 }
 
-const history=({navigation})=>{
+const history=({navigation,route})=>{
+    // GetHistory()
+    //console.log(list)
     return(
         <View>
-            <Text onPress={()=>navigation.navigate('UserHome')}>history</Text>
+            <HistoryShow stackNavigation={route.params.stackNavigation}/>
         </View>
     )
 }
