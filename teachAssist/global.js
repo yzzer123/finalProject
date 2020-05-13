@@ -19,7 +19,19 @@ global.gColor = {
     unActiveColor : '#C0C0C0',
 }
 global.server = "http://yzzer.top:5074"
-fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
+global.user=[]
+global.usernames=[]
+global.password=[]
+
+fetch('http://yzzer.top:5074/users')
+    .then(response=>response.json())
+    .then(data=>{
+      for(let i in data){
+        global.usernames.push(data[i].username)
+        global.password.push(data[i].password)
+      }
+    })
+/* fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
     .then(data=>{
         global.user = data;
     })
@@ -42,4 +54,19 @@ fetch("http://yzzer.top:5074/users/1").then(rep=>rep.json())
                 
             })
 
-    })
+    }) */
+
+
+
+    global.ReadTime=[]
+    global.Readtime=[]
+        fetch("http://yzzer.top:5074/readTime/1")
+        .then(rep=>rep.json())
+        .then(data=>{
+          for(let i in data)
+            if(i!=="id")
+            {
+              global.Readtime.push(i)
+              global.ReadTime.push(data[i]/60)
+            }
+        })

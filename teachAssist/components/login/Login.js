@@ -11,11 +11,12 @@ import {
   ToastAndroid,
   Alert
 } from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles';
-
-const width = Dimensions.get('window').width
-export default class Login extends Component{
+const _savedata=async()=>{
+    AsyncStorage.setItem(global.login,'True')
+}
+class Login extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -24,14 +25,22 @@ export default class Login extends Component{
         }
     }
     User={
-        UserName:'Dzp',
-        PassWord:'12345'
+        UserName:global.user.username,
+        PassWord:global.user.password
     }
+    _reqdata2=async(setStatus)=>{
+        let value= await AsyncStorage.getItem(global.login)
+        this.props.Set[1](value)
+        
+      }
     Judge(){
-        if(this.state.UserName==this.User.UserName&&this.state.PassWord==this.User.PassWord){
+        if(this.state.PassWord==this.User.PassWord){
+            AsyncStorage.setItem(global.login,'True')
             ToastAndroid.show(`${this.state.UserName},${this.state.PassWord}`,ToastAndroid.SHORT)
+            this._reqdata2()
+            console.log(this.props.Set[0])
         }
-        el
+        else
             ToastAndroid.show(`Login failed`,ToastAndroid.SHORT)
         }
     login(){
@@ -46,25 +55,26 @@ export default class Login extends Component{
     }
     render() {
         return(
-            <View style={styles.container}>
-                <Image source={require('./image/avatar.jpg')} style={styles.image} />
-                <TextInput 
-                    placeholder={'User'} 
-                    style={styles.textinput}
-                    onChangeText = {(UserName)=> this.setState({UserName})}
-                />
-                <TextInput 
-                    placeholder={'Password'} 
-                    secureTextEntry = {true} 
-                    style={styles.textinput}
-                    onChangeText = {(PassWord)=>this.setState({PassWord})}
-                />
-                <TouchableOpacity style={styles.LoginButton}
-                    onPress={()=>this.login()}
-                    activeOpacity={0.9}>
-                    <Text style={{color:'white'}}>Login</Text>
-                </TouchableOpacity>
-            </View>
+
+            <>
+                    <View style={styles.container}>
+                        <Image source={require('./image/Learning.png')} style={styles.image} />
+                        <Text style={styles.textinput}>{this.User.UserName}</Text>
+                        <TextInput 
+                            placeholder={'Password'} 
+                            secureTextEntry = {true} 
+                            style={styles.textinput}
+                            onChangeText = {(PassWord)=>this.setState({PassWord})}
+                        />
+                        <TouchableOpacity style={styles.LoginButton}
+                            onPress={()=>this.login()}
+                            activeOpacity={0.9}>
+                            <Text style={{color:'white'}}>Login</Text>
+                        </TouchableOpacity>
+                    </View>
+            </>
         )
     }
 }
+
+export default Login

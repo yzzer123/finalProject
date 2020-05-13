@@ -11,12 +11,39 @@ import {
 import styles from './styles'
 const width=Dimensions.get('window').width
 export default class UserHeader extends Component{
-    constructor(Props){
-        super(Props)
+    constructor(props){
+        super(props);
         this.state={
-            name:'Dzper',
-            numbers:['133','33','133']
+            issues:'',
+            comments:'',
+            favorite:''
         }
+        setInterval(() => {
+            fetch(`http://yzzer.top:5074/users/${global.user.id}`)
+            .then(rep=>rep.json())
+            .then(data=>{this.setState({issues:data.issues,comments:data.comments})})
+            .then(()=>{
+                fetch(`http://yzzer.top:5074/favorite/${global.user.id}`)
+                .then(rep=>rep.json())
+                .then(data=>{
+                    this.setState({favorite:data.list.length})
+                })
+            })
+        },150);
+    }
+
+    componentDidMount(){
+        fetch(`http://yzzer.top:5074/users/${global.user.id}`).then(rep=>rep.json())
+        .then(data=>{
+            this.setState({issues:data.issues,comments:data.comments})
+        })
+        .then(()=>{
+            fetch(`http://yzzer.top:5074/favorite/${global.user.id}`).then(rep=>rep.json())
+            .then(data=>{
+                this.setState({favorite:data.list.length})
+            })
+        }
+        )
     }
     render(){
         return(
@@ -31,11 +58,11 @@ export default class UserHeader extends Component{
             <View style={[styles.topViewStyleView,{marginTop:35}]} >
                 <Image 
                     style={styles.leftIconStyle}
-                    source={require('./image/avatar.jpg')}
+                    source={{uri:global.user.usericon_url}}
                 />
                 <View style={styles.centerViewStyle}>
                     <Text style={{fontSize:20,color:'white',fontWeight:'bold'}}>
-                        {this.state.name}
+                        {global.user.username}
                     </Text>
 
                 </View>
@@ -44,9 +71,9 @@ export default class UserHeader extends Component{
     }
     BottomItem(){
         var Array=[]
-        var num=this.state.numbers
+        var num=[this.state.issues,this.state.comments,this.state.favorite]
         var data=[
-                    {'number':num[0],'title':'articles'},
+                    {'number':num[0],'title':'issues'},
                     {'number':num[1],'title':'commments'},
                     {'number':num[2],'title':'favourite'}
                 ]
