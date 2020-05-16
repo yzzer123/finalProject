@@ -353,7 +353,7 @@ class ArticleList extends Component{
            ref={(flatlist)=>{this._FlatList = flatlist}}
            data={this.virsualList}
            onScroll={(event)=>{this.judgeIsDisplay(event)}}
-           removeClippedSubviews={true}
+          
            //if list is empty
            ListEmptyComponent={<Find404 />}
            renderItem={({item,index})=>(<ArticleItem type={this.props.type} action={this.goToArticleScreen} index={index} item={item}/>)}
