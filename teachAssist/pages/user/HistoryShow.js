@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles'
+import { Value } from 'react-native-reanimated';
 
 class HistoryShow extends Component{
     constructor(props){
@@ -24,7 +25,6 @@ class HistoryShow extends Component{
         if(item.title!==undefined)
             return(
                 <View>
-                    
                         <View style={styles.item}>
                         <Image style={styles.image} source={{uri:item.backgroundImageUri}} />
                             <Text style={styles.item}>{item.title}</Text>
@@ -32,40 +32,49 @@ class HistoryShow extends Component{
                 </View>
             )
     }
-    componentWillMount(){
-        AsyncStorage.getItem("History")
-        .then((value)=>{
-        if(value!==null){
-            
-        this.setState({HisList:value});
-        }
-    })
-    .then(()=>{
+    async Fetch(){
         for(let i=0;i<this.state.HisList.length;i++){
-            fetch(`http://yzzer.top:5074/articles/${this.state.HisList[this.state.HisList.length-i-1]}`)
-            .then((repsonse)=>repsonse.json())
-            .then((data)=>{
+        await fetch(`http://yzzer.top:5074/articles/${this.state.HisList[i]}`)
+        .then((repsonse)=>repsonse.json())
+        .then((data)=>{
                 this.setState({HisArt:this.state.HisArt.concat(data)})
-            })
+        })
         }
-    })
-    .catch((error)=>{
-      console.warn(error)
-    }).done();
+    }
+    componentDidMount(){
+        AsyncStorage.getItem("History")
+        .then(value=>JSON.parse(value))
+        .then(value=>{
+            if(value!==null){
+                var n=[]
+                for(let i=0;i<value.length;i++){
+                    if(n.indexOf(value[value.length-i-1])===-1)
+                      
+                    n.push(value[value.length-i-1])
+                }
+                this.setState({HisList:n});
+
+            }
+        })
+        .then(()=>{
+            this.Fetch()
+        })
+        .catch((error)=>{
+        console.warn(error)
+        }).done();
     }
     render(){
-        if(this.state.HisArt!==0)
+        if(this.state.HisArt.length!==0)
         {
-        
             return(
-                <View>
-                    <FlatList 
-                        data={this.state.HisArt}
-                        keyExtractor={(item,index)=>index}
-                        renderItem={({item})=>this.ReturnItem(item)}
-                    />
-                </View>
-        )
+                    <View>
+                        <FlatList 
+                            data={this.state.HisArt}
+                            keyExtractor={(item,index)=>`${index}`}
+                            renderItem={({item})=>this.ReturnItem(item)}
+                        />
+                    </View>
+             )
         }
         else
         return(
