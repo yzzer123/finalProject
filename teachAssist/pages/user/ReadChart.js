@@ -18,7 +18,7 @@ class ReadChart extends Component{
         .then(rep=>rep.json())
         .then(data=>{
           for(let i in data)
-            if(i!=="id")
+            if(i!=="id"&&i!=="createdAt")
             {
                 listtime.push(i)
                 listvalue.push(data[i]/60)

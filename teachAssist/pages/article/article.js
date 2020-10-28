@@ -300,7 +300,9 @@ export default class ArticlePage extends Component{
     this.coverLayer.show("bottom")
   
   }
-  
+  addComments = ()=>{
+    this.setState({commentNum: this.state.commentNum + 1})
+  }
   likeAction=()=>{
     if(!this.state.isLiked){
       // make a promice to resolve the async problem
@@ -514,7 +516,7 @@ export default class ArticlePage extends Component{
           <CoverLayer ref={ref => this.coverLayer = ref}
             coverLayerEvent={()=>{this.coverLayer.hide()}}
             coverLayerColor="rgba(0,0,0,0.3)"
-            renderContent={()=>(<CommentList article={this.state.article} hide={()=>{this.coverLayer.hide()}} />)}
+            renderContent={()=>(<CommentList add={this.addComments} article={this.state.article} hide={()=>{this.coverLayer.hide()}} />)}
           />
       </>
         

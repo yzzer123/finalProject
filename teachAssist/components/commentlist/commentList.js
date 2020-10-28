@@ -140,7 +140,10 @@ export default class extends Component{
                         body:JSON.stringify({
                             commends:data.commends+1
                         })
-                    }).catch(e=>{Alert.alert(e)})
+                    }).then(()=>{
+                        this.props.add();
+                    })
+                    .catch(e=>{Alert.alert(e)})
                     fetch(`${global.server}/hash/${getId(this.article.type) }`,
                         {method:"PATCH",
                         headers:{
